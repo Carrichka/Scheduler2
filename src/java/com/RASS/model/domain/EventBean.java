@@ -20,20 +20,17 @@ public class EventBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** Staff last name */
-	private String staffLastName;
+	/** field id */
+        private int field_id;
 	
-	/** Staff first name */
-        private String staffFirstName;
+	/** scorekeeper id */
+        private int scorekeeper_id;
         
-        /** Date */
+        /** Scheduled Date */
 	private String scheduledDate;
         
-        /** Day of the Week */
-	private String weekDay;
-	
-	/** field number */
-	private String fieldnumber;
+        /** game type id */
+	private int gametype_id;
         
 	
 	public EventBean() {
@@ -43,35 +40,36 @@ public class EventBean implements Serializable {
 	
 	/**
 	 * 
-	 * @return the staffFirstName
+	 * @return the field_id
 	 */
-	public String getStaffFirstName() {
-		return staffFirstName;
+	public int getFieldId() {
+		return field_id;
 	}
 	
 	/**
 	 * 
-	 * @param staffFirstName
+	 * @param field_id(
 	 */
-	public void setStaffFirstName(String staffFirstName) {
-		this.staffFirstName = staffFirstName;
+	public void setFieldId(int field_id) {
+		this.field_id = field_id;
 	}
 	
         /**
 	 * 
-	 * @return the staffLastName
+	 * @return the scorekeeper_id
 	 */
-	public String getStaffLastName() {
-		return staffLastName;
+	public int getScorekeeperId() {
+		return scorekeeper_id;
 	}
 	
 	/**
 	 * 
-	 * @param staffLastName
+	 * @param scorekeeper_id
 	 */
-	public void setStaffLastName(String staffLastName) {
-		this.staffLastName = staffLastName;
+	public void setScorekeeperId(int scorekeeper_id) {
+		this.scorekeeper_id = scorekeeper_id;
 	}
+        
 	/**
 	 * 
 	 * @return the scheduledDate
@@ -88,37 +86,21 @@ public class EventBean implements Serializable {
 		this.scheduledDate = scheduledDate;
 	}
         
-        /**
+       	/**
 	 * 
-	 * @return the scheduledDate
+	 * @return the gametype_id
 	 */
-	public String getDayofWeek() {
-		return weekDay;
+	public int getGametypeId() {
+		return gametype_id;
 	}
 	
 	/**
 	 * 
-	 * @param weekDay
+	 * @param gametype_id(
 	 */
-	public void setDayofWeek(String weekDay) {
-		this.weekDay = weekDay;
+	public void setGametypeId(int gametype_id) {
+		this.gametype_id = gametype_id;
 	}
 	
-	/**
-	 * 
-	 * @return the membershipNumber
-	 */
-	public String getFieldNumber() {
-		return fieldnumber;
-	}
-	
-	/**
-	 * 
-	 * @param fieldnumber
-	 */
-	public void setFieldNumber(String fieldnumber) {
-		this.fieldnumber = fieldnumber;
-	}
-	
-}// End AddEvent
+}// End EventBean
 

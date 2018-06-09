@@ -29,19 +29,8 @@ public class LoginManager {
                 
                 LoginServiceDAO loginSvc = (LoginServiceDAO) factory.getService("LoginService");
                     returnStaff = loginSvc.authenticate(login);
-                
-//			if ( user.equals("cmartin") && pass.equals("password")){
-			
-  //                          returnStaff.setFirstname("Jane");
-    //                        returnStaff.setLastname("Doe");
 					
-                            return returnStaff;	
-					
-	//		} else {
-				
-	//			return null;
-				
-	//		}//end if/else 
+                    return returnStaff;	
             
 	}//end authenticate
 

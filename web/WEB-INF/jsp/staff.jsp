@@ -1,29 +1,34 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Staff</title>
 </head>
 <body>
-<sql:query var="result" dataSource="jdbc/scorekeeper_scheduling">
-    SELECT * FROM scorekeeper_user
-</sql:query>
-    
-<table border="1">
-    <!-- column headers -->
-    <tr>
-    <c:forEach var="columnName" items="${result.columnNames}">
-        <th><c:out value="${columnName}"/></th>
-    </c:forEach>
-</tr>
-<!-- column data -->
-<c:forEach var="row" items="${result.rowsByIndex}">
-    <tr>
-    <c:forEach var="column" items="${row}">
-        <td><c:out value="${column}"/></td>
-    </c:forEach>
-    </tr>
-</c:forEach>
-</table></body>
+    <center>
+    <form method="post" action="AddStaff">
+    <table style='border:1px solid black;'>
+        <thead>
+            <tr>
+                <th>Add a new scorekeeper<br/></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="first_name"/><br/></td>
+            </tr>
+            <tr>
+                <td>Last Name </td>
+                <td><input type="text" name="last_name"/><br/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update"/></td>
+                </form>
+                <td><input type="submit" value="Cancel"/></td></td>
+            </tr>
+        </tbody>
+    </table>
+</center>
+</body>
 </html>

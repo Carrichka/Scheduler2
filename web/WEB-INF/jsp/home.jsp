@@ -14,7 +14,6 @@
         <thead>
              <tr bgcolor="grey">
                 <th> Date </th>
-                <th> Day of the Week </th>
                 <th> Field </th>
                 <th> Game Type </th>
                 <th> First Name </th>
@@ -23,8 +22,10 @@
         </thead>
         <tbody>
             <tr>
-                <td><%=new java.text.SimpleDateFormat("mm/dd/yyyy").format(new java.util.Date()) %></td>    
-                <td>day</td>
+                <td><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+                    <jsp:useBean id="now" class="java.util.Date"/>    
+                    <fmt:formatDate value="${now}" pattern="MM-dd-yyyy" />
+                </td>    
                 <td>field</td>
                 <td>league</td>
                 <td>
@@ -33,7 +34,7 @@
                     <jsp:getProperty name="user" property="username" />
                 </td>
                 <td>
-                    <jsp:setProperty name="user" property="username" value="Carri" />
+                    <jsp:setProperty name="user" property="username" value="Martin" />
                     <jsp:getProperty name="user" property="username" />
                 </td>
             </tr>
@@ -52,13 +53,14 @@
                         <input type="submit" value="Schedule Scorekeeper"/></form>
                     </td>
                     <td>
-            <button type="button" onclick="location.href='/AddEvent'">Remove Item</button>
+                        <form method="get" action="AddStaff">
+                        <input type="submit" value="Create Scorekeeper"/></form>
                     </td>
                     <td>
-            <button type="button" onclick="javascript:window.location=/WEB-INF/jsp/staff.jsp">Create Scorekeeper</button>
+            <button type="button" onclick="javascript:window.location=/WEB-INF/jsp/staff.jsp">Remove Event</button>
                     </td>
                     <td>
-            <input type="button" name="Remove Scorekeeper" onclick="document.location.href='staff.jsp'">                    </td>
+            <button type="button" onclick="javascript:window.location=/WEB-INF/jsp/staff.jsp">Remove Scorekeeper</button>                   </td>
                </tr>
                </thead>
         </table>

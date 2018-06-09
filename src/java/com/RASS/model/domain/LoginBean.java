@@ -2,31 +2,45 @@ package com.RASS.model.domain;
 
 public class LoginBean {
 
-	//default constructor
+	/** Default Constructor*/
 	public LoginBean() {
 		
 	}
 
+        /** username */
 	private String username;
 	
-	//username setter
+	/**
+	 * 
+	 * @param username
+	 */
 	public void setUsername(String username){
 		this.username = username;
 	}
 	
-	//username getter
+	/**
+	 * 
+	 * @return the username
+	 */
 	public String getUsername(){
 		return username;
 	}
 
+        /** password */
 	private String password;
 	
-	//password setter
+	/**
+	 * 
+	 * @param password
+	 */
 	public void setPassword(String password){
 		this.password = password;
 	}
 	
-	//password getter
+	/**
+	 * 
+	 * @return the password
+	 */
 	public String getPassword (){
 		return password;
 	}

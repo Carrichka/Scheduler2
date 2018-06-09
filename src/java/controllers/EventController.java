@@ -7,7 +7,12 @@ package controllers;
 
 import com.RASS.model.domain.EventBean;
 import com.RASS.model.business.managers.EventManager;
+import com.RASS.model.business.managers.StaffManager;
+import com.RASS.model.domain.StaffBean;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +40,15 @@ public class EventController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
-    	getServletContext().getRequestDispatcher ("/WEB-INF/jsp/event.jsp").forward(request, response);
+            try {
+                List<StaffBean> listStaff = (new StaffManager()).createlist();
+                request.setAttribute("listCategory", listStaff);
+ 
+                getServletContext().getRequestDispatcher ("/WEB-INF/jsp/event.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,11 +58,11 @@ public class EventController extends HttpServlet {
 
 		//moving form data into the EventBean
 		EventBean bean = new EventBean();
-		bean.setStaffFirstName(request.getParameter("firstname"));
-		bean.setStaffLastName(request.getParameter("lastname"));
-                bean.setFieldNumber(request.getParameter("field_number"));
-                bean.setScheduledDate(request.getParameter("scheduled_date"));
-                bean.setDayofWeek(request.getParameter("week_day"));
+//                    int FieldId = Integer.parseInt(request.getParameter("field_id"));
+//		bean.setFieldId(request.getParameter(FieldId));
+//		bean.setScorekeeperId(request.getParameter("scorekeeper_id"));
+//               bean.setScheduledDate(request.getParameter("scheduledDate"));
+//               bean.setGametypeId(request.getParameter("gametype_id"));
 		
                 EventBean savedEvent = (new EventManager()).scheduleEvent(bean);
                 

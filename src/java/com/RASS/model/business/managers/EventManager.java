@@ -21,8 +21,8 @@ public class EventManager {
 		
 		EventBean returnEvent = new EventBean();
  
-		returnEvent.setStaffFirstName("Jane");
-		returnEvent.setStaffLastName("Doe");
+		//returnEvent.setStaffFirstName("Jane");
+		//returnEvent.setStaffLastName("Doe");
 		returnEvent.setScheduledDate("5/30/2018");
 					
 		return returnEvent;	

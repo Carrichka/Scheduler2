@@ -1,0 +1,291 @@
+Example Select Prepared Statement Example:
+
+private List getTopics (Connection conn, String searchCriteria)
+throws SQLException
+{
+  List blogs = new LinkedList();
+  String query = "SELECT id, text FROM blogs WHERE UPPER(text) LIKE ?";
+  try
+  {
+    // going to do a search using "upper"
+    searchCriteria = searchCriteria.toUpperCase();
+
+    // create the preparedstatement and add the criteria
+    PreparedStatement ps = conn.prepareStatement(query);
+    ps.setString(1, "%" + searchCriteria + "%");
+
+    // process the results
+    ResultSet rs = ps.executeQuery();
+    while ( rs.next() )
+    {
+      Blog blog = new Blog();
+      blog.setID  ( rs.getInt("id") );
+      blog.setText( rs.getString("text") );
+      blogs.add(blog);
+    }
+    rs.close();
+    ps.close();
+  }
+  catch (SQLException se)
+  {
+    // log exception;
+    throw se;
+  }
+  return blogs;
+}
+
+For details, see below:
+
+https://alvinalexander.com/blog/post/jdbc/jdbc-preparedstatement-select-like
+
+
+Update prepared statement example:
+
+import java.sql.*;
+
+/**
+ * A Java MySQL UPDATE example.
+ * Demonstrates the use of a SQL UPDATE statement against a
+ * MySQL database, called from a Java program.
+ * 
+ * Created by Alvin Alexander, http://devdaily.com
+ *
+ */
+public class JavaMysqlPreparedStatementUpdateExample
+{
+
+  public static void main(String[] args)
+  {
+    try
+    {
+      // create a java mysql database connection
+      String myDriver = "org.gjt.mm.mysql.Driver";
+      String myUrl = "jdbc:mysql://localhost/test";
+      Class.forName(myDriver);
+      Connection conn = DriverManager.getConnection(myUrl, "root", "");
+    
+      // create the java mysql update preparedstatement
+      String query = "update users set num_points = ? where first_name = ?";
+      PreparedStatement preparedStmt = conn.prepareStatement(query);
+      preparedStmt.setInt   (1, 6000);
+      preparedStmt.setString(2, "Fred");
+
+      // execute the java preparedstatement
+      preparedStmt.executeUpdate();
+      
+      conn.close();
+    }
+    catch (Exception e)
+    {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    }
+  }
+}
+
+For details:
+
+https://alvinalexander.com/java/java-mysql-update-query-example
+
+Example insert prepared statement java:
+
+import java.sql.*;
+import java.util.Calendar;
+
+/**
+ * A Java MySQL PreparedStatement INSERT example.
+ * Demonstrates the use of a SQL INSERT statement against a
+ * MySQL database, called from a Java program, using a
+ * Java PreparedStatement.
+ * 
+ * Created by Alvin Alexander, http://alvinalexander.com
+ */
+public class JavaMysqlPreparedStatementInsertExample
+{
+
+  public static void main(String[] args)
+  {
+    try
+    {
+      // create a mysql database connection
+      String myDriver = "org.gjt.mm.mysql.Driver";
+      String myUrl = "jdbc:mysql://localhost/test";
+      Class.forName(myDriver);
+      Connection conn = DriverManager.getConnection(myUrl, "root", "");
+    
+      // create a sql date object so we can use it in our INSERT statement
+      Calendar calendar = Calendar.getInstance();
+      java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+
+      // the mysql insert statement
+      String query = " insert into users (first_name, last_name, date_created, is_admin, num_points)"
+        + " values (?, ?, ?, ?, ?)";
+
+      // create the mysql insert preparedstatement
+      PreparedStatement preparedStmt = conn.prepareStatement(query);
+      preparedStmt.setString (1, "Barney");
+      preparedStmt.setString (2, "Rubble");
+      preparedStmt.setDate   (3, startDate);
+      preparedStmt.setBoolean(4, false);
+      preparedStmt.setInt    (5, 5000);
+
+      // execute the preparedstatement
+      preparedStmt.execute();
+      
+      conn.close();
+    }
+    catch (Exception e)
+    {
+      System.err.println("Got an exception!");
+      System.err.println(e.getMessage());
+    }
+  }
+}
+
+For details:
+
+https://alvinalexander.com/java/java-mysql-insert-example-preparedstatement
+
+DELETE prepared Statement Example:
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+/**
+ * A Java MySQL DELETE example.
+ * Demonstrates the use of a SQL DELETE statement against a
+ * MySQL database, called from a Java program, using a
+ * Java PreparedStatement.
+ * 
+ * Created by Alvin Alexander, http://devdaily.com
+ */
+public class JavaMysqlDeleteExample
+{
+
+  public static void main(String[] args)
+  {
+    try
+    {
+      // create the mysql database connection
+      String myDriver = "org.gjt.mm.mysql.Driver";
+      String myUrl = "jdbc:mysql://localhost/test";
+      Class.forName(myDriver);
+      Connection conn = DriverManager.getConnection(myUrl, "root", "");
+      
+      // create the mysql delete statement.
+      // i'm deleting the row where the id is "3", which corresponds to my
+      // "Barney Rubble" record.
+      String query = "delete from users where id = ?";
+      PreparedStatement preparedStmt = conn.prepareStatement(query);
+      preparedStmt.setInt(1, 3);
+
+      // execute the preparedstatement
+      preparedStmt.execute();
+      
+      conn.close();
+    }
+    catch (Exception e)
+    {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    }
+
+  }
+}
+
+See, details below:
+
+https://alvinalexander.com/java/java-mysql-delete-query-example
+
+
+-- Login SQL:
+
+SELECT count(*) FROM scorekeeper_user
+WHERE email_address = ? AND password = ?;
+
+-- If count= 0
+SELECT count(*) FROM scorekeeper_user
+WHERE email_address = ?;
+
+-- On incorrect PW:
+UPDATE scorekeeper_user
+SET login_attempts = CASE
+    WHEN login_attempts >= 2 THEN 'Y'
+    ELSE login_attempts
+    END,
+    login_attempts = login_attempts+1
+WHERE email_address = ?;
+
+
+-- Homepage SQL:
+
+-- Initial Page load:
+
+SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
+WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY;
+
+-- Selected Month (30 day) interval
+
+SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
+WHERE scheduled_date BETWEEN ? + INTERVAL 30 DAY;
+
+-- Selected Previous/Next Set of records 7 day interval:
+
+SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
+WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY;
+
+-- Selected Previous/Next Set of records 30 day interval:
+
+SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
+WHERE scheduled_date BETWEEN ? + INTERVAL 30 DAY;
+
+
+-- Assign Scorekeeper to field:
+
+-- Load dropdowns and list controls:
+
+SELECT scorekeeper_id, first_name, last_name FROM scorekeeper
+WHERE deleted = 'N';
+
+SELECT field_id, field_name FROM field;
+
+SELECT game_type_id, game_type_description FROM game_type;
+
+-- Create field_scorekeeper_schedule record:
+
+INSERT INTO field_scorekeeper_schedule
+(field_id, scorekeeper_id, scheduled_date, game_type_id)
+VALUES
+(?, ?, ?, ?);
+
+-- above data_types: int, int, date, int
+
+-- Remove Scorekeeper from field:
+
+SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
+WHERE field_id = ? AND scorekeeper_id = ? AND scheduled_date = ?; 
+    
+DELETE FROM field_scorekeeper_schedule
+WHERE field_id = ? AND scorekeeper_id = ? AND scheduled_date = ?;
+
+--Create Scorekeeper:
+
+INSERT INTO scorekeerper
+(first_name, last_name, deleted)
+VALUES
+(?, ?, ?);
+
+-- Update/Delete Scorekeeper:
+
+UPDATE scorekeerper
+SET first_name = ?,
+    last_name = ?
+WHERE scorekeerper_id = ?;
+
+
+UPDATE scorekeerper
+SET deleted = ?
+WHERE scorekeerper_id = ?;
+
+

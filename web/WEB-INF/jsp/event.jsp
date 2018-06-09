@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="com.RASS.model.domain.EventBean"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 <title>Assign Scorekeeper</title>
 </head>
 <body>
@@ -18,12 +28,26 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>First Name</td>
-                    <td><input type="text" name="firstname"/><br/></td>
+                    <td>Date</td>
+                    <td><input type="text" id="datepicker"></td>
                 </tr>
                 <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" name="lastname"/><br/></td>
+                    <td>Scorekeeper</td>
+                    <td><select name="savedbean">
+                            <c:forEach items="${listCategory}" var="savedbean">
+                                <option value="${savedbean.firstname}">${savedbean.lastname}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>League</td>
+                    <td><select name="game_type">
+                            <option>Mens</option>
+                            <option>Mens Advanced</option>
+                            <option>Coed</option>
+                            <option>Coed Advanced</option>
+                        </select></td>
                 </tr>
                 <tr>
                     <td>Field</td>
@@ -31,21 +55,6 @@
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
-                        </select></td>
-                </tr>
-                <tr>
-                    <td>Date</td>
-                    <td><input type="text" name="scheduled_date"/><br/></td>
-                </tr>
-                <tr>
-                    <td>Day of the Week</td>
-                    <td><select name="week_day">
-                            <option>Sunday</option>
-                            <option>Monday</option>
-                            <option>Tuesday</option>
-                            <option>Wednesday</option>
-                            <option>Thursday</option>
-                            <option>Friday</option>
                         </select></td>
                 </tr>
             </tbody>

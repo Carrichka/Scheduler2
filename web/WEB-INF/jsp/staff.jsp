@@ -25,7 +25,10 @@
             <tr>
                 <td><input type="submit" value="Update"/></td>
                 </form>
+                <form method="get" action="login">
                 <td><input type="submit" value="Cancel"/></td></td>
+                </form>
+
             </tr>
         </tbody>
     </table>

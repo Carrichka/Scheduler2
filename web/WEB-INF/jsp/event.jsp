@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:useBean id="savedbean" class="com.RASS.model.domain.StaffBean" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,9 +35,9 @@
                 </tr>
                 <tr>
                     <td>Scorekeeper</td>
-                    <td><select name="savedbean">
-                            <c:forEach items="${listCategory}" var="savedbean">
-                                <option value="${savedbean.firstname}">${savedbean.lastname}</option>
+                    <td><select name="listStaff">
+                            <c:forEach items="${listStaff}" var="staffbean">
+                                <option value="${staffbean.firstname}"</option>
                             </c:forEach>
                         </select>
                     </td>
@@ -65,13 +67,15 @@
                     <td>
                         <input type="submit" value="Create"/>
                     </td>
+                    </form>
+                    <form method="get" action="login">
                     <td>
                         <input type="submit" value="Cancel"/>
                     </td>
+                    </form>
                 </tr>
             </tbody>
         </table>
-</form>
     </center>
 </body>
 </html>

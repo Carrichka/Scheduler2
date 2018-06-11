@@ -42,7 +42,7 @@ public class EventController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
             try {
                 List<StaffBean> listStaff = (new StaffManager()).createlist();
-                request.setAttribute("listCategory", listStaff);
+                request.setAttribute("listStaff", listStaff);
  
                 getServletContext().getRequestDispatcher ("/WEB-INF/jsp/event.jsp").forward(request, response);
             } catch (Exception ex) {

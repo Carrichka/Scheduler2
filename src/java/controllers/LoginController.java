@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
-    	getServletContext().getRequestDispatcher ("/WEB-INF/jsp/login.jsp").forward(request, response);
+    	getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
     }
 
 	/**

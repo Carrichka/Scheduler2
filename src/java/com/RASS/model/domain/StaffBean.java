@@ -16,9 +16,17 @@ public class StaffBean {
 		
 	}
         
-        /** Constructor for dynamic list creation*/
+        /** Constructor for dynamic list creation
+        * @param scorekeeper_id
+        * @param firstname
+        * @param lastname
+        * @param deleted
+        */
 	public StaffBean(int scorekeeper_id,String firstname,String lastname,String deleted) {
-		
+		this.scorekeeper_id = scorekeeper_id;
+                this.firstname = firstname;
+                this.lastname = lastname;
+                this.deleted = deleted;
 	}
         
         /** scorekeeper id */

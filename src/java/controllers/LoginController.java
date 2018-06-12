@@ -7,6 +7,7 @@ package controllers;
 
 import com.RASS.model.domain.StaffBean;
 import com.RASS.model.domain.LoginBean;
+import com.RASS.model.domain.EventBean;
 import com.RASS.model.business.managers.LoginManager;
 import java.io.IOException;
 
@@ -54,10 +55,16 @@ public class LoginController extends HttpServlet {
 
 		//authenticate the user
 		if (event != null) {
-				
+			
+                    EventBean testbean = new EventBean();
+                        testbean.setFieldId(1);
+                        testbean.setGametypeId(1);
+                        testbean.setScheduledDate("6/11/2018");
+                        testbean.setScorekeeperId(1);
+                        
 			//placing customer in the HttpSession object
 			HttpSession session = request.getSession();
-			session.setAttribute("event", event);
+			session.setAttribute("event", testbean);
 
 			getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
 			

@@ -34,8 +34,6 @@
                     <jsp:getProperty name="user" property="username" />
                 </td>
                 <td>
-                    <jsp:setProperty name="user" property="username" value="Martin" />
-                    <jsp:getProperty name="user" property="username" />
                 </td>
             </tr>
         </tbody>

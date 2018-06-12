@@ -35,9 +35,11 @@
                 </tr>
                 <tr>
                     <td>Scorekeeper</td>
-                    <td><select name="listStaff">
-                            <c:forEach items="${listStaff}" var="staffbean">
-                                <option value="${staffbean.firstname}"</option>
+                    <td>
+                        <select name="listStaff">
+                            <c:forEach items="${listStaff}" var="savedbean">
+                                <option value="${savedbean.firstname}">${savedbean.firstname} ${savedbean.lastname}
+                                </option>
                             </c:forEach>
                         </select>
                     </td>

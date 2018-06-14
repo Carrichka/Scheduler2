@@ -22,19 +22,11 @@
         </thead>
         <tbody>
             <tr>
-                <td><%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-                    <jsp:useBean id="now" class="java.util.Date"/>    
-                    <fmt:formatDate value="${now}" pattern="MM-dd-yyyy" />
-                </td>    
-                <td>field</td>
-                <td>league</td>
-                <td>
-                    <jsp:useBean id="user" scope="session" class="com.RASS.model.domain.LoginBean" />
-                    <jsp:setProperty name="user" property="username" value="Carri" />
-                    <jsp:getProperty name="user" property="username" />
-                </td>
-                <td>
-                </td>
+                <td>${event.scheduledDate} </td>    
+                <td>${event.fieldName} </td>
+                <td>${event.gametype} </td>
+                <td>${event.scorekeeperFirstName} </td>
+                <td>${event.scorekeeperLastName} </td>
             </tr>
         </tbody>
     </table>

@@ -14,7 +14,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" }).val();
   } );
   </script>
 <title>Assign Scorekeeper</title>
@@ -31,14 +31,16 @@
             <tbody>
                 <tr>
                     <td>Date</td>
-                    <td><input type="text" id="datepicker"></td>
+                    <td>
+                        <input type="text" id="datepicker" name="scheduledDate"/><br/>
+                    </td>
                 </tr>
                 <tr>
                     <td>Scorekeeper</td>
                     <td>
                         <select name="listStaff">
                             <c:forEach items="${listStaff}" var="savedbean">
-                                <option value="${savedbean.firstname}">${savedbean.firstname} ${savedbean.lastname}
+                                <option value="${savedbean.scorekeeperid}">${savedbean.firstname} ${savedbean.lastname}
                                 </option>
                             </c:forEach>
                         </select>
@@ -46,7 +48,7 @@
                 </tr>
                 <tr>
                     <td>League</td>
-                    <td><select name="game_type">
+                    <td><select name="gameType">
                             <option>Mens</option>
                             <option>Mens Advanced</option>
                             <option>Coed</option>
@@ -55,7 +57,7 @@
                 </tr>
                 <tr>
                     <td>Field</td>
-                    <td><select name="field_number">
+                    <td><select name="fieldName">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

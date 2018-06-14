@@ -56,11 +56,13 @@ public class LoginController extends HttpServlet {
 		//authenticate the user
 		if (event != null) {
 			
+                    //EventBean used to create the dynamic table listing events from the database
                     EventBean testbean = new EventBean();
-                        testbean.setFieldId(1);
-                        testbean.setGametypeId(1);
-                        testbean.setScheduledDate("6/11/2018");
-                        testbean.setScorekeeperId(1);
+                        testbean.setFieldName("Field 1");
+                        testbean.setGametype("Mens");
+                        testbean.setScheduledDate("5/11/2018");
+                        testbean.setScorekeeperFirstName("Carri");
+                        testbean.setScorekeeperLastName("Martin");
                         
 			//placing customer in the HttpSession object
 			HttpSession session = request.getSession();

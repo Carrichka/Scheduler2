@@ -51,27 +51,42 @@ public class EventController extends HttpServlet {
         
     }
 	/**
+        * @param request
+        * @param response
+        * @throws javax.servlet.ServletException
+        * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
         @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//moving form data into the EventBean
-		EventBean bean = new EventBean();
-//                    int FieldId = Integer.parseInt(request.getParameter("field_id"));
-//		bean.setFieldId(request.getParameter(FieldId));
-//		bean.setScorekeeperId(request.getParameter("scorekeeper_id"));
-//               bean.setScheduledDate(request.getParameter("scheduledDate"));
-//               bean.setGametypeId(request.getParameter("gametype_id"));
+		//moving form data into an EventBean
+		EventBean newevent = new EventBean();
+                    newevent.setFieldName(request.getParameter("fieldName"));
+                    //parsing string from request into an int
+                    int staffId = Integer.parseInt(request.getParameter("listStaff"));
+                        newevent.setScorekeeperId((staffId));
+                    newevent.setScheduledDate(request.getParameter("scheduledDate"));
+                    newevent.setGametype(request.getParameter("gameType"));
 		
-                EventBean savedEvent = (new EventManager()).scheduleEvent(bean);
+                EventBean savedEvent;
                 
-		HttpSession session = request.getSession();
+                try{
+                  savedEvent= (new EventManager()).scheduleEvent(newevent); 
+                  
+                  if (savedEvent != null) {
+                      HttpSession session = request.getSession();
+                      session.setAttribute("bean", savedEvent);
+                      getServletContext().getRequestDispatcher ("/WEB-INF/jsp/success.jsp").forward(request, response);
 		
-                session.setAttribute("bean", savedEvent);
-                getServletContext().getRequestDispatcher ("/WEB-INF/jsp/success.jsp").forward(request, response);
-		
-	}//end doPost
+                  }else {
+                      //generates a failure response
+                      getServletContext().getRequestDispatcher ("/WEB-INF/jsp/error.jsp").forward(request, response);
+                  }//end if/else
+                } catch (Exception e) {
+                    e.printStackTrace();;
+                }//end try catch
+        }//end doPost
 	
 }//end EventController
 

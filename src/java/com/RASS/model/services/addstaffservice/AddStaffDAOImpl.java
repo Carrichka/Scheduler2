@@ -14,6 +14,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 /**
  *
  * @author Carri Martin
@@ -41,7 +42,7 @@ public class AddStaffDAOImpl implements AddStaffDAO{
             logger.log(Level.SEVERE, "can't look up connection pool", ex);
             throw new RuntimeException(ex);
         }
-    }//end LoginServiceDAOImpl
+    }//end AddStaffDAOImpl
     
     @Override
     public StaffBean addnewstaff(StaffBean newsb){

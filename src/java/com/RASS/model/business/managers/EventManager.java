@@ -6,6 +6,8 @@
 package com.RASS.model.business.managers;
 
 import com.RASS.model.domain.EventBean;
+import com.RASS.model.services.servicefactory.ServiceFactory;
+import com.RASS.model.services.scheduleevent.ScheduleEventDAO;
 
 /**
  *
@@ -17,15 +19,16 @@ public class EventManager {
 		
 	}
 	
-	public EventBean scheduleEvent(EventBean event) {
+	public EventBean scheduleEvent(EventBean newevent) throws Exception {
 		
 		EventBean returnEvent = new EventBean();
  
-		//returnEvent.setStaffFirstName("Jane");
-		//returnEvent.setStaffLastName("Doe");
-		returnEvent.setScheduledDate("5/30/2018");
+		ServiceFactory factory = new ServiceFactory();
+                
+                ScheduleEventDAO addstaffSvc = (ScheduleEventDAO) factory.getService("ScheduleEventService");
+                    returnEvent = addstaffSvc.scheduleEvent(newevent);
 					
 		return returnEvent;	
 
-	}//end authenticate
+	}//end scheduleEvent
 }

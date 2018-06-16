@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial=scale=1" />
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge" />
+  <link rel="stylesheet"
+        href="./resources/css/bootstrap.css">
+  <script></script>
+  <title>Login</title>
 </head>
+
 <body>
-<center>
-    <form method="post" action="login">
-    <table style='border:1px solid black;'>
-        <thead>
+  <div class="jumbotron">
+    <img src="./resources/img/full_logo.png"
+         alt="Apex"
+         </div>
+    <div class="container">
+      <div class="navbar navbar-dark"
+           <div
+           class="navbar-branding">
+
+      </div>
+    </div>
+    <center>
+      <form method="post"
+            action="login">
+        <table style='border:1px solid black;'>
+          <thead>
             <tr>
-                <th>Login<br/></th>
-                <th></th>
+              <th>Login<br/></th>
+              <th></th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             <tr>
-                <td>Username cmartin007@regis.edu</td>
-                <td><input type="text" name="username"/><br/></td>
-            </tr>
-            <tr>
-                <td>Password </td>
-                <td><input type="text" name="password"/><br/></td>
+              <td>Username cmartin007@regis.edu</td>
+              <td><input type="text"
+                       name="username" /><br/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Login"/></td>
-                <td><input type="submit" value="Cancel"/></td>
+              <td>Password </td>
+              <td><input type="text"
+                       name="password" /><br/></td>
             </tr>
-        </tbody>
-    </table>
-</form>
-</center>
+            <tr>
+              <td><input class="btn btn-primary btn-block  mb-3"
+                       type="submit"
+                       value="Login" /></td>
+              <!-- <td><input class="btn btn-warning  mb-3"
+                       type="submit"
+                       value="Cancel" /></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </center>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./resources/js/bootstrap.js"></script>
 </body>
+
 </html>

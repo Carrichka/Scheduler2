@@ -6,8 +6,11 @@
 package com.RASS.model.business.managers;
 
 import com.RASS.model.domain.EventBean;
+import com.RASS.model.services.listevent.ListEventDAO;
 import com.RASS.model.services.servicefactory.ServiceFactory;
 import com.RASS.model.services.scheduleevent.ScheduleEventDAO;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -31,4 +34,22 @@ public class EventManager {
 		return returnEvent;	
 
 	}//end scheduleEvent
-}
+        
+        public List<EventBean> eventlist() throws Exception {
+            
+        List<EventBean> returnEvent;
+                
+        ServiceFactory factory = new ServiceFactory();
+            
+        try{
+            ListEventDAO eventlistSvc = (ListEventDAO) factory.getService("ListEventService");
+            returnEvent = eventlistSvc.eventlist();
+					
+            return returnEvent;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+                
+                return null;
+        }//end eventlist
+}//end EventManager

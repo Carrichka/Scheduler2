@@ -59,5 +59,10 @@
   	<env-entry-type>java.lang.String</env-entry-type>
   	<env-entry-value>com.RASS.model.services.scheduleevent.ScheduleEventDAOImpl</env-entry-value>
   </env-entry>
+  <env-entry>
+  	<env-entry-name>ListEventService</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>com.RASS.model.services.listevent.ListEventDAOImpl</env-entry-value>
+  </env-entry>
 </web-app>
 

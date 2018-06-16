@@ -5,11 +5,15 @@
  */
 package controllers;
 
+import com.RASS.model.business.managers.EventManager;
 import com.RASS.model.domain.StaffBean;
 import com.RASS.model.domain.LoginBean;
 import com.RASS.model.domain.EventBean;
 import com.RASS.model.business.managers.LoginManager;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,13 +38,19 @@ public class LoginController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+        @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
     	getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
     }
 
 	/**
+        * @param request
+        * @param response
+        * @throws javax.servlet.ServletException
+        * @throws java.io.IOException
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+        @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//moving form data into the LoginBean
@@ -56,20 +66,18 @@ public class LoginController extends HttpServlet {
 		//authenticate the user
 		if (event != null) {
 			
-                    //EventBean used to create the dynamic table listing events from the database
-                    EventBean testbean = new EventBean();
-                        testbean.setFieldName("Field 1");
-                        testbean.setGametype("Mens");
-                        testbean.setScheduledDate("5/11/2018");
-                        testbean.setScorekeeperFirstName("Carri");
-                        testbean.setScorekeeperLastName("Martin");
+                    try {
+                        List<EventBean> listEvent = (new EventManager()).eventlist();
                         
-			//placing customer in the HttpSession object
-			HttpSession session = request.getSession();
-			session.setAttribute("event", testbean);
+                        //placing event list in the HttpSession object
+                        HttpSession session = request.getSession();
+                        session.setAttribute("listEvent", listEvent);
+ 
+                        getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
+                    } catch (Exception ex) {
+                        Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }//end try/catch
 
-			getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
-			
 		}else {
 			
 			//generates a failure response

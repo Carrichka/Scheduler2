@@ -3,41 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.RASS.model.services.liststaff;
+package com.RASS.model.services.listevent;
 
-import com.RASS.model.domain.StaffBean;
+import com.RASS.model.domain.EventBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Carri Martin
  */
-public class ListStaffDAOImpl implements ListStaffDAO{
+public class ListEventDAOImpl implements ListEventDAO{
     
     /**
      * the logger
      */
-    private static final Logger logger = Logger.getLogger(ListStaffDAOImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(ListEventDAOImpl.class.getName());
     /**
      * data source from Glassfish
      */
     private DataSource ds;
-
+    
     /**
      * Constructor.
      */
-    public ListStaffDAOImpl() {
+    public ListEventDAOImpl() {
         try {
             Context iniCtx = new InitialContext();
             Context envCtx = (Context) iniCtx.lookup("");
@@ -46,40 +46,50 @@ public class ListStaffDAOImpl implements ListStaffDAO{
             logger.log(Level.SEVERE, "can't look up connection pool", ex);
             throw new RuntimeException(ex);
         }
-    }//end ListStaffDAOImpl
+    }//end ListEventDAOImpl
     
     @Override
-    public List<StaffBean> createlist(){
+    public List<EventBean> eventlist(){
         
-        List<StaffBean> listCategory = new ArrayList<>();
+        List<EventBean> listEvent = new ArrayList<>();
         
         /*SQL select statement to pull a list of scorekeepers from the DB
         */
-        String sql = "SELECT * FROM scorekeeper";
+        String sql = "SELECT f.field_name, s.first_name, s.last_name, fss.scheduled_date, gt.game_type_description FROM field_scorekeeper_schedule fss\n" +
+            "JOIN scorekeeper s ON s.scorekeeper_id = fss.scorekeeper_id\n" +
+            "JOIN field f ON f.field_id = fss.field_id\n" +
+            "JOIN game_type gt ON gt.game_type_id = fss.game_type_id\n" +
+            "ORDER BY fss.scheduled_date,f.field_name";
+            //"WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY";
         
         try (Connection conn = ds.getConnection()) {
 
             PreparedStatement ps = conn.prepareStatement(sql);
+                //ps.setString(1, java.sql.Date.valueOf("2018-06-03");
                 ResultSet result = ps.executeQuery();
+                int fieldID=0;
+                int scorekeeperID=0;
+                int gametypeID=0;
                 
             while (result.next()) {
-                int id = result.getInt("scorekeeper_id");
+                String fieldName = result.getString("field_name");
                 String Fname = result.getString("first_name");
                 String Lname = result.getString("last_name");
-                String del = result.getString("deleted");
-                StaffBean savedbean = new StaffBean(id,Fname,Lname,del);
+                String scheduledDate = result.getString("scheduled_date");
+                String gameType = result.getString("game_type_description");
+                EventBean savedbean = new EventBean(fieldID, fieldName, scorekeeperID,Fname,Lname,scheduledDate,gametypeID, gameType);
                      
-                listCategory.add(savedbean);
+                listEvent.add(savedbean);
             }    
                 conn.close();  
                 
-                return listCategory;
+                return listEvent;
 
         } catch (SQLException ex) {
             logger.log(Level.WARNING, "can't query database", ex);
 
             return null;
         }//end of catch
-    }//end createlist
+    }//end eventlist
     
-}
+}//end ListEventDAOImpl

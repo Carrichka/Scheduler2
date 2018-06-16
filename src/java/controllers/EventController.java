@@ -47,9 +47,10 @@ public class EventController extends HttpServlet {
                 getServletContext().getRequestDispatcher ("/WEB-INF/jsp/event.jsp").forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }//end try/catch
         
-    }
+    }//end doGet
+    
 	/**
         * @param request
         * @param response

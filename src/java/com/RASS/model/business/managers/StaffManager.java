@@ -22,36 +22,36 @@ public class StaffManager {
 		
 	}
 	
-	public StaffBean addnewstaff(StaffBean newsb) throws Exception {
+    public StaffBean addnewstaff(StaffBean newsb) throws Exception {
 		
-		String user = newsb.getFirstname();
-		String pass = newsb.getLastname();
+        String user = newsb.getFirstname();
+        String pass = newsb.getLastname();
 		
-		StaffBean returnStaff = new StaffBean();
+	StaffBean returnStaff = new StaffBean();
                 
-                ServiceFactory factory = new ServiceFactory();
+        ServiceFactory factory = new ServiceFactory();
                 
-                AddStaffDAO addstaffSvc = (AddStaffDAO) factory.getService("AddStaffService");
-                    returnStaff = addstaffSvc.addnewstaff(newsb);
+        AddStaffDAO addstaffSvc = (AddStaffDAO) factory.getService("AddStaffService");
+            returnStaff = addstaffSvc.addnewstaff(newsb);
 					
-                    return returnStaff;	
+            return returnStaff;	
             
 	}//end addnewstaff
         
-        public List<StaffBean> createlist() throws Exception {
+    public List<StaffBean> createlist() throws Exception {
             
-            List<StaffBean> returnStaff;
+        List<StaffBean> returnStaff;
                 
-            ServiceFactory factory = new ServiceFactory();
+        ServiceFactory factory = new ServiceFactory();
             
-            try{
-                ListStaffDAO createlistSvc = (ListStaffDAO) factory.getService("ListStaffService");
-                returnStaff = createlistSvc.createlist();
+        try{
+            ListStaffDAO createlistSvc = (ListStaffDAO) factory.getService("ListStaffService");
+            returnStaff = createlistSvc.createlist();
 					
-                return returnStaff;
-            }catch(SQLException e){
-                e.printStackTrace();
-            }
+            return returnStaff;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
                 
                 return null;
         }//end createlist

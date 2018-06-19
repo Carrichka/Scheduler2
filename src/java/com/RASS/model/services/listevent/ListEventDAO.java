@@ -18,5 +18,5 @@ public interface ListEventDAO extends IService{
     
         public final String NAME = "ListEventService";
 	
-	public List<EventBean>  eventlist ()throws NamingException;
+	public List<EventBean>  eventlist (String startDate, String endDate)throws NamingException;
 }

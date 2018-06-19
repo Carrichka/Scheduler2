@@ -35,7 +35,7 @@ public class EventManager {
 
 	}//end scheduleEvent
         
-        public List<EventBean> eventlist() throws Exception {
+        public List<EventBean> eventlist(String startDate, String endDate) throws Exception {
             
         List<EventBean> returnEvent;
                 
@@ -43,7 +43,7 @@ public class EventManager {
             
         try{
             ListEventDAO eventlistSvc = (ListEventDAO) factory.getService("ListEventService");
-            returnEvent = eventlistSvc.eventlist();
+            returnEvent = eventlistSvc.eventlist(startDate, endDate);
 					
             return returnEvent;
         }catch(SQLException e){

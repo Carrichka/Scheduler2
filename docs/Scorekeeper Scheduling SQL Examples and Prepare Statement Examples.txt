@@ -222,24 +222,23 @@ WHERE email_address = ?;
 
 -- Initial Page load:
 
-SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
-WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY;
-
--- Selected Month (30 day) interval
-
-SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
-WHERE scheduled_date BETWEEN ? + INTERVAL 30 DAY;
+SELECT f.field_name, s.first_name, s.last_name, fss.scheduled_date, gt.game_type_description FROM field_scorekeeper_schedule fss
+JOIN scorekeeper s ON s.scorekeeper_id = fss.scorekeeper_id
+JOIN field f ON f.field_id = fss.field_id
+JOIN game_type gt ON gt.game_type_id = fss.game_type_id
+WHERE fss.scheduled_date BETWEEN now() AND (now() + INTERVAL 7 DAY)
+ORDER BY fss.scheduled_date, f.field_name;
 
 -- Selected Previous/Next Set of records 7 day interval:
 
-SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
-WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY;
 
--- Selected Previous/Next Set of records 30 day interval:
 
-SELECT field_id, scorekeeper_id, scheduled_date, game_type_id FROM field_scorekeeper_schedule
-WHERE scheduled_date BETWEEN ? + INTERVAL 30 DAY;
-
+SELECT f.field_name, s.first_name, s.last_name, fss.scheduled_date, gt.game_type_description FROM field_scorekeeper_schedule fss
+JOIN scorekeeper s ON s.scorekeeper_id = fss.scorekeeper_id
+JOIN field f ON f.field_id = fss.field_id
+JOIN game_type gt ON gt.game_type_id = fss.game_type_id
+WHERE fss.scheduled_date BETWEEN '2018-06-04' AND ('2018-06-04' + INTERVAL 7 DAY)
+ORDER BY fss.scheduled_date, f.field_name;
 
 -- Assign Scorekeeper to field:
 

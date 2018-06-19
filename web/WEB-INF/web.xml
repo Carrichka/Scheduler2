@@ -21,6 +21,10 @@
     <servlet-name>AddStaff</servlet-name>
     <servlet-class>controllers.StaffController</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DateRange</servlet-name>
+    <servlet-class>controllers.ListController</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>AddEvent</servlet-name>
     <url-pattern>/AddEvent</url-pattern>
@@ -32,6 +36,10 @@
   <servlet-mapping>
     <servlet-name>AddStaff</servlet-name>
     <url-pattern>/AddStaff</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DateRange</servlet-name>
+    <url-pattern>/DateRange</url-pattern>
   </servlet-mapping>
   <resource-ref>
   	<description>DB Connection</description>

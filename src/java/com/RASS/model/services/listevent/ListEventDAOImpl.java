@@ -49,23 +49,26 @@ public class ListEventDAOImpl implements ListEventDAO{
     }//end ListEventDAOImpl
     
     @Override
-    public List<EventBean> eventlist(){
+    public List<EventBean> eventlist(String startDate, String endDate){
         
         List<EventBean> listEvent = new ArrayList<>();
         
-        /*SQL select statement to pull a list of scorekeepers from the DB
+        /*SQL select statement to pull a list of events from the DB
         */
         String sql = "SELECT f.field_name, s.first_name, s.last_name, fss.scheduled_date, gt.game_type_description FROM field_scorekeeper_schedule fss\n" +
             "JOIN scorekeeper s ON s.scorekeeper_id = fss.scorekeeper_id\n" +
             "JOIN field f ON f.field_id = fss.field_id\n" +
             "JOIN game_type gt ON gt.game_type_id = fss.game_type_id\n" +
-            "ORDER BY fss.scheduled_date,f.field_name";
-            //"WHERE scheduled_date BETWEEN ? + INTERVAL 7 DAY";
+            "WHERE fss.scheduled_date BETWEEN ? AND ?\n" +
+            "ORDER BY fss.scheduled_date, f.field_name;";
         
+               
         try (Connection conn = ds.getConnection()) {
-
+            
             PreparedStatement ps = conn.prepareStatement(sql);
-                //ps.setString(1, java.sql.Date.valueOf("2018-06-03");
+                ps.setDate(1, java.sql.Date.valueOf(startDate));
+                ps.setDate(2, java.sql.Date.valueOf(endDate));
+                
                 ResultSet result = ps.executeQuery();
                 int fieldID=0;
                 int scorekeeperID=0;

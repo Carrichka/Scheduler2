@@ -54,7 +54,24 @@
         </table>
       </center>
       <center>
-        <p>Previous Date Range Next Date Range</p>
+        <table>
+          <thead>
+            <tr>
+              <td>
+                <form method="post" action="DateRange">
+                <input type="submit" value="Previous Date Range"/>
+                </form>
+              </td>
+              <td>
+                <form method="get" action="login">
+                <input type="submit" value="Current"/>   
+                </form>
+              </td>
+              <td>
+                <form method="get" action="DateRange">
+                <input type="submit" value="Next Date Range"/>
+                </form>
+              </td>
       </center>
       <center>
         <table>

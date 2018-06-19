@@ -11,6 +11,9 @@ import com.RASS.model.domain.LoginBean;
 import com.RASS.model.domain.EventBean;
 import com.RASS.model.business.managers.LoginManager;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,36 +41,75 @@ public class LoginController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-        @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
-    	getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
-    }
+    	
+            /*Setting the current date*/
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd");
+            String startDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+                    
+            try {
+                calendar.setTime(dateFormat.parse(startDate));
+            } catch (ParseException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            /*Setting an end date a week after the start date*/
+            calendar.add(Calendar.DATE,7);
+            String endDate = dateFormat.format(calendar.getTime().getTime());
+                    
+            try {
+                List<EventBean> listEvent = (new EventManager()).eventlist(startDate, endDate);
+                        
+                //placing event list in the HttpSession object
+                HttpSession session = request.getSession();
+                session.setAttribute("listEvent", listEvent);
+ 
+                getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }//end try/catch
+    }//end doGet
 
-	/**
-        * @param request
-        * @param response
-        * @throws javax.servlet.ServletException
-        * @throws java.io.IOException
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-        @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+    * @param request
+    * @param response
+    * @throws javax.servlet.ServletException
+    * @throws java.io.IOException
+    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//moving form data into the LoginBean
-		LoginBean login = new LoginBean();
-		login.setUsername(request.getParameter("username"));
-		login.setPassword(request.getParameter("password"));
+            /*moving form data into the LoginBean*/
+            LoginBean login = new LoginBean();
+            login.setUsername(request.getParameter("username"));
+            login.setPassword(request.getParameter("password"));
 		
-		StaffBean event;
+            StaffBean event;
                 
-                try{
-                    event = (new LoginManager()).authenticate(login);
+            try{
+                event = (new LoginManager()).authenticate(login);
 
-		//authenticate the user
+		/*authenticate the user*/
 		if (event != null) {
-			
+                    /*Setting the current date*/
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd");
+                    String startDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+                    
                     try {
-                        List<EventBean> listEvent = (new EventManager()).eventlist();
+                        calendar.setTime(dateFormat.parse(startDate));
+                    } catch (ParseException ex) {
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    /*Setting an end date a week after the start date*/
+                    calendar.add(Calendar.DATE,7);
+                    String endDate = dateFormat.format(calendar.getTime().getTime());
+                    
+                    try {
+                        List<EventBean> listEvent = (new EventManager()).eventlist(startDate, endDate);
                         
                         //placing event list in the HttpSession object
                         HttpSession session = request.getSession();
@@ -88,6 +130,6 @@ public class LoginController extends HttpServlet {
                     e.printStackTrace();;
                 }//end try catch
 		
-	}//end goPost
+	}//end doPost
 
 }//end LoginController

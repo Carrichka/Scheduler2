@@ -53,6 +53,7 @@
           </tbody>
         </table>
       </center>
+        <p></p>
       <center>
         <table>
           <thead>
@@ -73,6 +74,7 @@
                 </form>
               </td>
       </center>
+        <p></p>
       <center>
         <table>
           <thead>
@@ -81,21 +83,14 @@
                 <form method="get"
                       action="AddEvent">
                   <input type="submit"
-                         value="Schedule Scorekeeper" /></form>
+                         value="Schedule Scorekeepers" /></form>
               </td>
               <td>
                 <form method="get"
                       action="AddStaff">
                   <input type="submit"
-                         value="Create Scorekeeper" /></form>
+                         value="Create/Update Scorekeepers" /></form>
               </td>
-              <td>
-                <button type="button"
-                        onclick="javascript:window.location=/WEB-INF/jsp/staff.jsp">Remove Event</button>
-              </td>
-              <td>
-                <button type="button"
-                        onclick="javascript:window.location=/WEB-INF/jsp/staff.jsp">Remove Scorekeeper</button>                </td>
             </tr>
           </thead>
         </table>

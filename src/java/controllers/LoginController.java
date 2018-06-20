@@ -68,7 +68,7 @@ public class LoginController extends HttpServlet {
  
                 getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
             } catch (Exception ex) {
-                Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }//end try/catch
     }//end doGet
 
@@ -117,7 +117,7 @@ public class LoginController extends HttpServlet {
  
                         getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
                     } catch (Exception ex) {
-                        Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }//end try/catch
 
 		}else {

@@ -8,6 +8,7 @@ package com.RASS.model.business.managers;
 import com.RASS.model.domain.StaffBean;
 import com.RASS.model.services.addstaffservice.AddStaffDAO;
 import com.RASS.model.services.liststaff.ListStaffDAO;
+import com.RASS.model.services.removestaff.RemoveStaffDAO;
 import com.RASS.model.services.servicefactory.ServiceFactory;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +28,7 @@ public class StaffManager {
         String user = newsb.getFirstname();
         String pass = newsb.getLastname();
 		
-	StaffBean returnStaff = new StaffBean();
+	StaffBean returnStaff;
                 
         ServiceFactory factory = new ServiceFactory();
                 
@@ -55,5 +56,17 @@ public class StaffManager {
                 
                 return null;
         }//end createlist
+    
+    public StaffBean removestaff(StaffBean staff) throws Exception {
+        
+            StaffBean returnStaff;
+ 
+            ServiceFactory factory = new ServiceFactory();
+                
+            RemoveStaffDAO removestaffSvc = (RemoveStaffDAO) factory.getService("RemoveStaffService");
+                returnStaff = removestaffSvc.removestaff(staff);
+					
+            return returnStaff;
+    }//end removestaff
         
 }//end StaffManager

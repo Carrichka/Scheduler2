@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Login Error</title>
+<title>Error</title>
 </head>
 <body>
-	<h1>Login Error</h1>
+	<h1>Error</h1>
 </body>
 </html>

@@ -25,6 +25,10 @@
     <servlet-name>DateRange</servlet-name>
     <servlet-class>controllers.ListController</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DeleteStaff</servlet-name>
+    <servlet-class>controllers.DeleteController</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>AddEvent</servlet-name>
     <url-pattern>/AddEvent</url-pattern>
@@ -40,6 +44,10 @@
   <servlet-mapping>
     <servlet-name>DateRange</servlet-name>
     <url-pattern>/DateRange</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteStaff</servlet-name>
+    <url-pattern>/DeleteStaff</url-pattern>
   </servlet-mapping>
   <resource-ref>
   	<description>DB Connection</description>
@@ -71,6 +79,11 @@
   	<env-entry-name>ListEventService</env-entry-name>
   	<env-entry-type>java.lang.String</env-entry-type>
   	<env-entry-value>com.RASS.model.services.listevent.ListEventDAOImpl</env-entry-value>
+  </env-entry>
+  <env-entry>
+  	<env-entry-name>RemoveStaffService</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>com.RASS.model.services.removestaff.RemoveStaffDAOImpl</env-entry-value>
   </env-entry>
 </web-app>
 

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Carri Martin
  */
-//@WebServlet("/DateRange")
+@WebServlet("/ListController")
 public class ListController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
@@ -55,7 +55,7 @@ public class ListController extends HttpServlet {
             try {
                 calendar.setTime(dateFormat.parse(currentDate));
             } catch (ParseException ex) {
-                        Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ListController.class.getName()).log(Level.SEVERE, null, ex);
             }
                     
             /*Setting a start date a week after the current date*/
@@ -75,7 +75,7 @@ public class ListController extends HttpServlet {
  
             getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);    
             } catch (Exception ex) {
-                Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ListController.class.getName()).log(Level.SEVERE, null, ex);
             }//end try/catch
 
     }// end doGet
@@ -98,7 +98,7 @@ public class ListController extends HttpServlet {
                 try {
                     calendar.setTime(dateFormat.parse(endDate));
                 } catch (ParseException ex) {
-                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 /*Setting a start date a week after the current date*/
@@ -114,7 +114,7 @@ public class ListController extends HttpServlet {
  
                     getServletContext().getRequestDispatcher ("/WEB-INF/jsp/home.jsp").forward(request, response);
                 } catch (Exception ex) {
-                    Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListController.class.getName()).log(Level.SEVERE, null, ex);
                 }//end try/catch
 		
 	}//end doPost

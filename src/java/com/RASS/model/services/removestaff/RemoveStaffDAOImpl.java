@@ -3,41 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.RASS.model.services.liststaff;
+package com.RASS.model.services.removestaff;
 
 import com.RASS.model.domain.StaffBean;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Carri Martin
  */
-public class ListStaffDAOImpl implements ListStaffDAO{
+public class RemoveStaffDAOImpl implements RemoveStaffDAO {
     
     /**
      * the logger
      */
-    private static final Logger logger = Logger.getLogger(ListStaffDAOImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(RemoveStaffDAOImpl.class.getName());
     /**
      * data source from Glassfish
      */
     private DataSource ds;
-
+    
     /**
      * Constructor.
      */
-    public ListStaffDAOImpl() {
+    public RemoveStaffDAOImpl() {
         try {
             Context iniCtx = new InitialContext();
             Context envCtx = (Context) iniCtx.lookup("");
@@ -46,40 +42,31 @@ public class ListStaffDAOImpl implements ListStaffDAO{
             logger.log(Level.SEVERE, "can't look up connection pool", ex);
             throw new RuntimeException(ex);
         }
-    }//end ListStaffDAOImpl
+    }//end RemoveStaffDAOImpl
     
     @Override
-    public List<StaffBean> createlist(){
+    public StaffBean removestaff(StaffBean newsb){
         
-        List<StaffBean> listCategory = new ArrayList<>();
+        int ScorekeeperId = newsb.getScorekeeperid();
         
-        /*SQL select statement to pull a list of active scorekeepers from the DB
+        /*SQL update statement to change a scorekeeper's deleted status to yes
         */
-        String sql = "SELECT * FROM scorekeeper WHERE deleted = 'N'";
+        String sql = "UPDATE scorekeeper SET deleted = 'Y' where scorekeeper_id = ?";
         
         try (Connection conn = ds.getConnection()) {
-
+            
             PreparedStatement ps = conn.prepareStatement(sql);
-                ResultSet result = ps.executeQuery();
+                ps.setInt(1, ScorekeeperId);
+                ps.execute();
                 
-            while (result.next()) {
-                int id = result.getInt("scorekeeper_id");
-                String Fname = result.getString("first_name");
-                String Lname = result.getString("last_name");
-                String del = result.getString("deleted");
-                StaffBean savedbean = new StaffBean(id,Fname,Lname,del);
-                     
-                listCategory.add(savedbean);
-            }    
                 conn.close();  
                 
-                return listCategory;
-
-        } catch (SQLException ex) {
+                return newsb;
+        }catch (SQLException ex) {
             logger.log(Level.WARNING, "can't query database", ex);
-
             return null;
         }//end of catch
-    }//end createlist
+
+    }//end removestaff
     
-}
+}//end RemoveStaffDAOImpl

@@ -24,7 +24,7 @@ public class EventManager {
 	
 	public EventBean scheduleEvent(EventBean newevent) throws Exception {
 		
-		EventBean returnEvent = new EventBean();
+		EventBean returnEvent;
  
 		ServiceFactory factory = new ServiceFactory();
                 

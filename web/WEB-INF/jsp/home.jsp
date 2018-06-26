@@ -12,26 +12,21 @@
             content="width=device-width, initial=scale=1" />
       <meta http-equiv="X-UA-Compatible"
             content="IE=edge" />
-      <h:outputStylesheet library="css"
-                          name="../../resources/css/bootstrap.css" />
+      <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet" type="text/css" />
       <title>Scheduling Home</title>
     </head>
 
     <body>
+      </div>
       <div class="container">
-        <div class="navbar navbar-dark"
-             <div
-             class="navbar-branding">
-        </div>
+        <h1 class="display-4">Manage Field/Scorekeeper Scheduling</h1>
       </div>
-      <div class="jumbotron">
-        <h1 class="display-3">Manage Field/Scorekeeper Scheduling</h1>
-        <center class="lead">Field Scorekeeper Scheduling List</center>
-      </div>
+          <center class="lead">Field/Scorekeeper Scheduling List</center>
       <center>
-        <table border="1">
+          <div class="container">
+        <table class="table table-striped">
           <thead>
-            <tr bgcolor="grey">
+            <tr bgcolor="green">
               <th> Date </th>
               <th> Field </th>
               <th> Game Type </th>
@@ -52,6 +47,7 @@
             </c:forEach>
           </tbody>
         </table>
+              </div>
       </center>
         <p></p>
       <center>
@@ -60,21 +56,27 @@
             <tr>
               <td>
                 <form method="post" action="DateRange">
-                <input type="submit" value="Previous Date Range"/>
+                <input class="btn btn-info btn-md  mb-3" 
+                       type="submit" 
+                       value="Previous Date Range"/>
                 </form>
               </td>
               <td>
                 <form method="get" action="login">
-                <input type="submit" value="Current"/>   
+                <input class="btn btn-info btn-sm  mb-3"
+                       type="submit" 
+                       value="Current"/>   
                 </form>
               </td>
               <td>
                 <form method="get" action="DateRange">
-                <input type="submit" value="Next Date Range"/>
+                <input class="btn btn-info btn-md  mb-3" 
+                       type="submit" 
+                       value="Next Date Range"/>
                 </form>
               </td>
       </center>
-        <p></p>
+        <br><br>
       <center>
         <table>
           <thead>
@@ -82,13 +84,15 @@
               <td>
                 <form method="get"
                       action="AddEvent">
-                  <input type="submit"
+                  <input class="btn btn-success btn-md  mb-3"
+                         type="submit"
                          value="Schedule Scorekeepers" /></form>
               </td>
               <td>
                 <form method="get"
                       action="AddStaff">
-                  <input type="submit"
+                  <input class="btn btn-success btn-md  mb-3"
+                         type="submit"
                          value="Create/Update Scorekeepers" /></form>
               </td>
             </tr>

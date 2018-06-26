@@ -2,15 +2,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Staff</title>
+    <meta http-equiv="Content-Type"
+            content="text/html; charset=ISO-8859-1">
+    <meta charset="utf-8" />
+    <meta name="viewport"
+            content="width=device-width, initial=scale=1" />
+    <meta http-equiv="X-UA-Compatible"
+            content="IE=edge" />
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet" type="text/css" />
+    <title>Update Staff</title>
 </head>
 <body>
     <center>
+    <br>
+    <h1>Add a new scorekeeper</h1>
     <form method="post" action="AddStaff">
-    <table style='border:1px solid black;'>
+    <table>
         <thead>
             <tr>
-                <th>Add a new scorekeeper<br/></th>
+                <th><br/></th>
                 <th></th>
             </tr>
         </thead>
@@ -24,22 +34,29 @@
                 <td><input type="text" name="last_name"/><br/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Update"/></td>
+                <td><input class="btn btn-primary btn-md  mb-3"
+                           type="submit" 
+                           value="Update"/>
+                </td>
                 </form>
                 <form method="get" action="login">
-                <td><input type="submit" value="Cancel"/></td></td>
+                    <td><input class="btn btn-danger btn-md  mb-3"
+                               accept=""type="submit" 
+                               accesskey=""value="Cancel"/></td>
+                    </td>
                 </form>
             </tr>
         </tbody>
     </table>
 </center>
-<p></p>
+<br><br>
 <center>
     <form method="post" action="DeleteStaff">
-    <table style='border:1px solid black;'>
+        <h1>Remove a scorekeeper</h1>
+    <table>
         <thead>
             <tr>
-                <th>Remove a scorekeeper<br/></th>
+                <th><br/></th>
                 <th></th>
             </tr>
         </thead>
@@ -56,10 +73,14 @@
                     </td>
             </tr>
             <tr>
-                <td><input type="submit" value="Remove"/></td>
+                <td><input class="btn btn-primary btn-md  mb-3"
+                           type="submit" 
+                           value="Remove"/></td>
                 </form>
                 <form method="get" action="AddStaff">
-                <td><input type="submit" value="Refresh List"/></td></td>
+                <td><input class="btn btn-info btn-md  mb-3"
+                           type="submit" 
+                           value="Refresh List"/></td></td>
                 </form>
             </tr>
         </tbody>

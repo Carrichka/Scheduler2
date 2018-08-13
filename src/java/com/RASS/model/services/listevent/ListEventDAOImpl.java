@@ -29,13 +29,14 @@ public class ListEventDAOImpl implements ListEventDAO{
      * the logger
      */
     private static final Logger logger = Logger.getLogger(ListEventDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
     
     /**
-     * Constructor.
+     * Database Connection Constructor
      */
     public ListEventDAOImpl() {
         try {
@@ -48,12 +49,19 @@ public class ListEventDAOImpl implements ListEventDAO{
         }
     }//end ListEventDAOImpl
     
+    /** Event list method that creates a list from the database for use on the home page in a dynamic table
+    * 
+    * @param startDate
+    * @param endDate
+    * @return listEvent
+    */
     @Override
     public List<EventBean> eventlist(String startDate, String endDate){
         
+        //instantiates a new list for EventBeans
         List<EventBean> listEvent = new ArrayList<>();
         
-        /*SQL select statement to pull a list of events from the DB
+        /*SQL prepared statement to pull a list of events from the DB
         */
         String sql = "SELECT f.field_name, s.first_name, s.last_name, fss.scheduled_date, gt.game_type_description FROM field_scorekeeper_schedule fss\n" +
             "JOIN scorekeeper s ON s.scorekeeper_id = fss.scorekeeper_id\n" +
@@ -62,7 +70,7 @@ public class ListEventDAOImpl implements ListEventDAO{
             "WHERE fss.scheduled_date BETWEEN ? AND ?\n" +
             "ORDER BY fss.scheduled_date, f.field_name;";
         
-               
+        // try/catch to create a DB connection and execute the SQL prepared statement        
         try (Connection conn = ds.getConnection()) {
             
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -70,6 +78,8 @@ public class ListEventDAOImpl implements ListEventDAO{
                 ps.setDate(2, java.sql.Date.valueOf(endDate));
                 
                 ResultSet result = ps.executeQuery();
+                
+                //Setting these variables to 0 for the EventBean paramaterized constructor
                 int fieldID=0;
                 int scorekeeperID=0;
                 int gametypeID=0;

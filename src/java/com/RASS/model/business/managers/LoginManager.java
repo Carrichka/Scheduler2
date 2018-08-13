@@ -14,16 +14,22 @@ import com.RASS.model.services.servicefactory.ServiceFactory;
 
 public class LoginManager {
 	
+        /** Default Constructor*/
 	public LoginManager() {
-		
 	}
 	
+        /** Login authentication method that calls the LoginServiceDAO service
+         * 
+         * @param login
+         * @return returnStaff
+         * @throws java.lang.Exception
+         */
 	public StaffBean authenticate(LoginBean login) throws Exception {
 		
 		String user = login.getUsername();
 		String pass = login.getPassword();
 		
-		StaffBean returnStaff = new StaffBean();
+		StaffBean returnStaff;
                 
                 ServiceFactory factory = new ServiceFactory();
                 
@@ -34,4 +40,4 @@ public class LoginManager {
             
 	}//end authenticate
 
-}
+}// end LoginManager

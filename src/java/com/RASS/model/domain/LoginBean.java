@@ -1,10 +1,13 @@
 package com.RASS.model.domain;
 
+/**
+ *
+ * @author Carri Martin
+ */
 public class LoginBean {
 
 	/** Default Constructor*/
-	public LoginBean() {
-		
+	public LoginBean() {	
 	}
 
         /** username */
@@ -45,4 +48,4 @@ public class LoginBean {
 		return password;
 	}
 
-}
+}//end LoginBean

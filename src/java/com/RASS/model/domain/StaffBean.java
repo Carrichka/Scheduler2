@@ -7,13 +7,12 @@ package com.RASS.model.domain;
 
 /**
  *
- * @author carri
+ * @author Carri Martin
  */
 public class StaffBean {
     
         /** Default Constructor*/
-	public StaffBean() {
-		
+	public StaffBean() {	
 	}
         
         /** Constructor for dynamic list creation
@@ -105,4 +104,4 @@ public class StaffBean {
 		return deleted;
 	}        
 
-}
+}// end StaffBean

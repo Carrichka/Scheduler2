@@ -41,14 +41,22 @@ public class LoginController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
     	
-            /*Setting the current date*/
+            /*Setting the current date to get a list of the current week's events*/
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd");
             String startDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
-                    
+             
+            // try/catch required to parse the date
             try {
                 calendar.setTime(dateFormat.parse(startDate));
             } catch (ParseException ex) {
@@ -94,16 +102,18 @@ public class LoginController extends HttpServlet {
 
 		/*authenticate the user*/
 		if (event != null) {
-                    /*Setting the current date*/
+                    /*Setting the current date for the home page event list*/
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd");
                     String startDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
                     
+                    // try/catch required to parse the date
                     try {
                         calendar.setTime(dateFormat.parse(startDate));
                     } catch (ParseException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
                     /*Setting an end date a week after the start date*/
                     calendar.add(Calendar.DATE,7);
                     String endDate = dateFormat.format(calendar.getTime().getTime());

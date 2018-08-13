@@ -25,13 +25,14 @@ public class RemoveStaffDAOImpl implements RemoveStaffDAO {
      * the logger
      */
     private static final Logger logger = Logger.getLogger(RemoveStaffDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
     
     /**
-     * Constructor.
+     * Database Connection Constructor
      */
     public RemoveStaffDAOImpl() {
         try {
@@ -44,6 +45,11 @@ public class RemoveStaffDAOImpl implements RemoveStaffDAO {
         }
     }//end RemoveStaffDAOImpl
     
+    /** Remove staff method that soft deletes staff members from the database
+    * 
+    * @param newsb
+    * @return newsb
+    */
     @Override
     public StaffBean removestaff(StaffBean newsb){
         

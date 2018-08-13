@@ -90,7 +90,7 @@ public class ListController extends HttpServlet {
         @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-                /*Setting the current date for the date range end*/
+                /*Setting the current date to use as the date range end date*/
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd");
                 String endDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());

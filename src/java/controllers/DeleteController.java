@@ -31,6 +31,13 @@ public class DeleteController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    /** 
+    * 
+    * @param request
+    * @param response
+    * @throws javax.servlet.ServletException
+    * @throws java.io.IOException
+    */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -48,6 +55,7 @@ public class DeleteController extends HttpServlet {
             
             //moving form data into the StaffBean
             StaffBean newsb = new StaffBean();
+            
             //parsing string from request into an int
             int staffId = Integer.parseInt(request.getParameter("listStaff"));
             newsb.setScorekeeperid((staffId));
@@ -75,8 +83,7 @@ public class DeleteController extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();;
             }//end try catch
-
-            
+   
         }//end doPost
     
 }//end DeleteController

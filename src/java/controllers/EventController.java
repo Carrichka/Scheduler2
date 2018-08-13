@@ -38,6 +38,13 @@ public class EventController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    /** 
+    * 
+    * @param request
+    * @param response
+    * @throws javax.servlet.ServletException
+    * @throws java.io.IOException
+    */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
             try {

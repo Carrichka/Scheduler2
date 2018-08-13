@@ -10,7 +10,8 @@ import com.RASS.model.services.IService;
 import javax.naming.NamingException;
 
 /**
- *
+ * Defines the interface used by DAO implementation classes
+ * 
  * @author Carri Martin
  */
 public interface RemoveStaffDAO extends IService{

@@ -18,38 +18,61 @@ import java.util.List;
  */
 public class EventManager {
 	
-	public EventManager() {
-		
+        /** Default Constructor*/
+	public EventManager() {	
 	}
 	
+        /** Schedule event method that calls the ScheduleEventDAO service
+         *  Adds new events to the database
+         * 
+         * @param newevent
+         * @return returnEvent
+         * @throws java.lang.Exception
+         */
 	public EventBean scheduleEvent(EventBean newevent) throws Exception {
 		
+                //instantiates a new EventBean
 		EventBean returnEvent;
  
+                //instantiates a new ServiceFactory
 		ServiceFactory factory = new ServiceFactory();
                 
-                ScheduleEventDAO addstaffSvc = (ScheduleEventDAO) factory.getService("ScheduleEventService");
-                    returnEvent = addstaffSvc.scheduleEvent(newevent);
+                //calls the ScheduleEventDAO service
+                ScheduleEventDAO newEvent = (ScheduleEventDAO) factory.getService("ScheduleEventService");
+                    returnEvent = newEvent.scheduleEvent(newevent);
 					
 		return returnEvent;	
 
 	}//end scheduleEvent
         
+        /** Event list method that calls the ListEventDAO service
+         *  Creates a list of events from the database for use on the home page in a dynamic table
+         * 
+         * @param startDate
+         * @param endDate
+         * @return returnEvent
+         * @throws java.lang.Exception
+         */
         public List<EventBean> eventlist(String startDate, String endDate) throws Exception {
             
-        List<EventBean> returnEvent;
+                //instantiates a new list of EventBeans
+                List<EventBean> returnEvent;
                 
-        ServiceFactory factory = new ServiceFactory();
+                //instantiates a new ServiceFactory
+                ServiceFactory factory = new ServiceFactory();
             
-        try{
-            ListEventDAO eventlistSvc = (ListEventDAO) factory.getService("ListEventService");
-            returnEvent = eventlistSvc.eventlist(startDate, endDate);
-					
-            return returnEvent;
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-                
-                return null;
-        }//end eventlist
+                //calls the ListEventDAO service within a try/catch to handle the SQL exception
+                try{
+                    ListEventDAO eventlistSvc = (ListEventDAO) factory.getService("ListEventService");
+                    returnEvent = eventlistSvc.eventlist(startDate, endDate);
+
+                    return returnEvent;
+                    
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
+
+                    return null;
+                }//end eventlist
+        
 }//end EventManager

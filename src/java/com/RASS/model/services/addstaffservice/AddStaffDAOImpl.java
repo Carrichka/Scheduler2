@@ -25,13 +25,14 @@ public class AddStaffDAOImpl implements AddStaffDAO{
      * the logger
      */
     private static final Logger logger = Logger.getLogger(AddStaffDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
 
     /**
-     * Constructor.
+     * Database Connection Constructor
      */
     public AddStaffDAOImpl() {
         try {
@@ -44,17 +45,24 @@ public class AddStaffDAOImpl implements AddStaffDAO{
         }
     }//end AddStaffDAOImpl
     
+    /** Add new staff method that enters a new staff member into the database
+    * 
+    * @param newsb
+    * @return returnStaff
+    */
     @Override
     public StaffBean addnewstaff(StaffBean newsb){
         
+        //Getting the new staff member first and last name
         String fname = newsb.getFirstname();
         String lname = newsb.getLastname();
         
-        /*SQL insert statement to create a new scorekeeper entry
+        /*SQL prepared statement to create a new scorekeeper entry in the database
         */
         String sql = "INSERT INTO scorekeeper_scheduling.scorekeeper "
                 + "(first_name, last_name, deleted) VALUES (?,?,?)";
         
+        // try/catch to create a DB connection and execute the SQL prepared statement
         try (Connection conn = ds.getConnection()) {
 
             PreparedStatement ps = conn.prepareStatement(sql);

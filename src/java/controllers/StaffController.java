@@ -33,6 +33,13 @@ public class StaffController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {   
     	
@@ -87,4 +94,4 @@ public class StaffController extends HttpServlet {
                 }//end try catch
 		
 	}//end goPost
-}
+}// end StaffController

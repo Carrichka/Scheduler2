@@ -25,13 +25,14 @@ public class ScheduleEventDAOImpl implements ScheduleEventDAO{
      * the logger
      */
     private static final Logger logger = Logger.getLogger(ScheduleEventDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
     
     /**
-     * Constructor.
+     * Database Connection Constructor
      */
     public ScheduleEventDAOImpl() {
         try {
@@ -44,9 +45,16 @@ public class ScheduleEventDAOImpl implements ScheduleEventDAO{
         }
     }//end ScheduleEventDAOImpl
     
+    /** Schedule event method that adds a new event to the database
+    * 
+    * @param newevent
+    * @return newevent
+    * @throws javax.naming.NamingException
+    */
     @Override
     public EventBean scheduleEvent(EventBean newevent)throws NamingException {
         
+        //Getting new event information
         int scorekeeperID = newevent.getScorekeeperId();
         String scheduledDate = newevent.getScheduledDate();
         
@@ -65,6 +73,7 @@ public class ScheduleEventDAOImpl implements ScheduleEventDAO{
                 default:
                     break;
             }//end switch to set field ID
+            
         String gametype = newevent.getGametype();
             int gameID=0;
             switch (gametype){
@@ -82,13 +91,14 @@ public class ScheduleEventDAOImpl implements ScheduleEventDAO{
                     break;
                 default:
                     break;
-            }//end switch to set field ID
+            }//end switch to set gametype ID
             
-        /*SQL insert statement to create a new event entry
+        /*SQL prepared statement to create a new event entry
         */
         String sql = "INSERT INTO field_scorekeeper_schedule "
                 + "(field_id, scorekeeper_id, scheduled_date, game_type_id) VALUES (?,?,?,?)";
         
+        // try/catch to create a DB connection and execute the SQL prepared statement
         try (Connection conn = ds.getConnection()) {
 
             PreparedStatement ps = conn.prepareStatement(sql);

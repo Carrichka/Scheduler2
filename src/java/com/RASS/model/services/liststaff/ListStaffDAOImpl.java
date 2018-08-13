@@ -29,13 +29,14 @@ public class ListStaffDAOImpl implements ListStaffDAO{
      * the logger
      */
     private static final Logger logger = Logger.getLogger(ListStaffDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
 
     /**
-     * Constructor.
+     * Database Connection Constructor
      */
     public ListStaffDAOImpl() {
         try {
@@ -48,15 +49,21 @@ public class ListStaffDAOImpl implements ListStaffDAO{
         }
     }//end ListStaffDAOImpl
     
+    /** Create staff list method that creates a list of staff members from the database
+    * 
+    * @return listCategory
+    */
     @Override
     public List<StaffBean> createlist(){
         
+        //instantiates a new list for StaffBeans
         List<StaffBean> listCategory = new ArrayList<>();
         
-        /*SQL select statement to pull a list of active scorekeepers from the DB
+        /*SQL prepared statement to pull a list of active scorekeepers from the DB
         */
         String sql = "SELECT * FROM scorekeeper WHERE deleted = 'N'";
         
+         // try/catch to create a DB connection and execute the SQL prepared statement
         try (Connection conn = ds.getConnection()) {
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -82,4 +89,4 @@ public class ListStaffDAOImpl implements ListStaffDAO{
         }//end of catch
     }//end createlist
     
-}
+}// end ListStaffDAOImpl

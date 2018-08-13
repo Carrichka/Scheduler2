@@ -44,11 +44,9 @@ public class EventBean implements Serializable {
         /** game type */
 	private String gameType;
         
-	
+	/** Default Constructor*/
 	public EventBean() {
-
-		/** Default Constructor*/
-	}
+        }
 	
         /** Constructor for dynamic list creation
         * @param fieldID

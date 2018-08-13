@@ -16,19 +16,24 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+/**
+ *
+ * @author Carri Martin
+ */
 public class LoginServiceDAOImpl implements LoginServiceDAO {
 
     /**
      * the logger
      */
     private static final Logger logger = Logger.getLogger(LoginServiceDAOImpl.class.getName());
+    
     /**
      * data source from Glassfish
      */
     private DataSource ds;
 
     /**
-     * Constructor.
+     *  Database Connection Constructor
      */
     public LoginServiceDAOImpl() {
         try {
@@ -41,19 +46,24 @@ public class LoginServiceDAOImpl implements LoginServiceDAO {
         }
     }//end LoginServiceDAOImpl
 
+    /** Login authentication method that checks user credentials against the database
+    * 
+    * @param login
+    * @return null
+    */
     @Override
     public StaffBean authenticate(LoginBean login) {
 
         String user = login.getUsername();
         String pass = login.getPassword();
         
-        /*this sql statement will ensure that only DB entries that match what was entered
-        *at login will pass authentication
+        /*SQL prepared statement to authenticate user credentials against the database
         */
         String sql = "SELECT * FROM scorekeeper_scheduling.scorekeeper_user "
                 + "WHERE email_address=? AND password=?";
         try (Connection conn = ds.getConnection()) {
 
+             // try/catch to create a DB connection and execute the SQL prepared statement
             try (PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, user);
                 ps.setString(2, pass);
@@ -62,8 +72,8 @@ public class LoginServiceDAOImpl implements LoginServiceDAO {
                     StaffBean sb = new StaffBean();
                     /*
                     * This section is not needed because the database does not
-                    *connect names with the username/password
-                    *I'm leaving this in case that changes.
+                    *connect names with the username/password.
+                    *Leaving this in place in case that changes
                      */
                     sb.setFirstname("firstname");
                     sb.setLastname("lastname");

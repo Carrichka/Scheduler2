@@ -32,21 +32,44 @@
               <th> Game Type </th>
               <th> First Name </th>
               <th> Last Name </th>
+              <th style="display:none;"> Field ID </th>
+              <th style="display:none;"> Scorekeeper ID </th>
+              <th style="display:none;"> Game Type ID </th>
+              <th> Action </th>
             </tr>
           </thead>
           <tbody>
+            <form method="get" action="DeleteStaff">
             <c:forEach items="${listEvent}"
-                       var="savedbean">
+                       var="savedbean"
+                       varStatus = "status">
               <tr>
-                <td>${savedbean.scheduledDate}</td>
+                <td>${savedbean.scheduledDate} <input type="hidden" name="scheduledDate${status.count}" value="<c:out value='${savedbean.scheduledDate}' />"/></td>
                 <td>${savedbean.fieldName} </td>
                 <td>${savedbean.gametype} </td>
                 <td>${savedbean.scorekeeperFirstName} </td>
                 <td>${savedbean.scorekeeperLastName} </td>
+                <td style="display:none;"> <input type="hidden" name="fieldId${status.count}" value="<c:out value='${savedbean.fieldId}' />"/></td>
+                <td style="display:none;"> <input type="hidden" name="scorekeeperId${status.count}" value="<c:out value='${savedbean.scorekeeperId}' />"/></td>
+                <td style="display:none;"> <input type="hidden" name="gametypeId${status.count}" value="<c:out value='${savedbean.gametypeId}' />"/></td>
+                <td>
+                     <input type="radio" name="radioButton" 
+                            value="${status.count}"
+
+                </td>
               </tr>
-            </c:forEach>
-          </tbody>
+            </c:forEach> 
+           </tbody> 
+        </table>   
+        <table>
+              <tr align = right>
+                  <input class="btn btn-info btn-sm  mb-3"
+                           type="submit" 
+                           value="Delete Selected Event"/>
+              </tr>
+           
         </table>
+         </form>
               </div>
       </center>
         <p></p>

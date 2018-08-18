@@ -197,6 +197,62 @@ public class EventBean implements Serializable {
 	public void setGametype(String gameType) {
 		this.gameType = gameType;
 	}
+        
+        @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fieldName == null) ? 0 : fieldName.hashCode());
+		result = prime * result
+				+ ((scorekeeperFirstName == null) ? 0 : scorekeeperFirstName.hashCode());
+		result = prime * result
+				+ ((scorekeeperLastName == null) ? 0 : scorekeeperLastName.hashCode());
+		result = prime * result
+				+ ((scheduledDate == null) ? 0 : scheduledDate.hashCode());
+                result = prime * result
+				+ ((gameType == null) ? 0 : gameType.hashCode());
+		return result;
+	}
+        @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EventBean  other = (EventBean ) obj;
+		if (fieldName == null) {
+			if (other.fieldName != null)
+				return false;
+		} else if (!fieldName.equals(other.fieldName))
+			return false;
+		if (scorekeeperFirstName == null) {
+			if (other.scorekeeperFirstName != null)
+				return false;
+		} else if (!scorekeeperFirstName.equals(other.scorekeeperFirstName))
+			return false;
+		if (scorekeeperLastName == null) {
+			if (other.scorekeeperLastName != null)
+				return false;
+		} else if (!scorekeeperLastName.equals(other.scorekeeperLastName))
+                if (scheduledDate == null) {
+			if (other.scheduledDate != null)
+				return false;
+		} else if (!scheduledDate.equals(other.scheduledDate))
+			return false;
+		if (gameType == null) {
+			if (other.gameType != null)
+				return false;
+		} else if (!gameType.equals(other.gameType))
+			return false;
+		/** These are different from the tests above because they are int **/
+		if (fieldID != other.fieldID)
+                if (scorekeeperID != other.scorekeeperID)
+                if (gametypeID != other.gametypeID)
+			return false;
+		return true;
+	}
 	
 }// End EventBean
 

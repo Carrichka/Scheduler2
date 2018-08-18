@@ -7,6 +7,7 @@ package com.RASS.model.business.managers;
 
 import com.RASS.model.domain.EventBean;
 import com.RASS.model.services.listevent.ListEventDAO;
+import com.RASS.model.services.removeevent.RemoveEventDAO;
 import com.RASS.model.services.servicefactory.ServiceFactory;
 import com.RASS.model.services.scheduleevent.ScheduleEventDAO;
 import java.sql.SQLException;
@@ -74,5 +75,24 @@ public class EventManager {
 
                     return null;
                 }//end eventlist
+        
+        /** Remove event method that calls the RemoveEventDAO service
+         *  Deletes an event from the database
+         * 
+         * @param event
+         * @return returnEvent
+         * @throws java.lang.Exception
+         */
+        public EventBean deleteevent(EventBean event) throws Exception {
+        
+                EventBean returnEvent;
+
+                ServiceFactory factory = new ServiceFactory();
+
+                RemoveEventDAO removestaffSvc = (RemoveEventDAO) factory.getService("RemoveEventService");
+                    returnEvent = removestaffSvc.removeevent(event);
+
+                return returnEvent;
+        }//end removestaff
         
 }//end EventManager

@@ -5,7 +5,9 @@
  */
 package controllers;
 
+import com.RASS.model.business.managers.EventManager;
 import com.RASS.model.business.managers.StaffManager;
+import com.RASS.model.domain.EventBean;
 import com.RASS.model.domain.StaffBean;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -32,6 +34,7 @@ public class DeleteController extends HttpServlet {
     }
     
     /** 
+    * Deletes an event from the database
     * 
     * @param request
     * @param response
@@ -41,9 +44,49 @@ public class DeleteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+            //moving form data into the EventBean
+            EventBean event = new EventBean();
+ 
+            //Retrieving the radio button selection to get the values for the right row in the table
+            String radioSelection = request.getParameter("radioButton");
+            
+            //parsing string from request into an int then adding the result to the event object
+            int fieldId = Integer.parseInt(request.getParameter("fieldId" + radioSelection));
+            event.setFieldId(fieldId);
+            int scorekeeperId = Integer.parseInt(request.getParameter("scorekeeperId" + radioSelection));
+            event.setScorekeeperId(scorekeeperId);
+            int gametypeId = Integer.parseInt(request.getParameter("gametypeId" + radioSelection));
+            event.setGametypeId(gametypeId);
+            
+            //Adding the scheduled date to the event object
+            event.setScheduledDate(request.getParameter("scheduledDate" + radioSelection));
+                
+            try{
+                event = (new EventManager()).deleteevent(event);
+
+		//if the event deletion was sucessful this directs to the success page
+		if (event != null) {
+				
+			//placing customer in the HttpSession object
+			HttpSession session = request.getSession();
+			session.setAttribute("event", event);
+
+			getServletContext().getRequestDispatcher ("/WEB-INF/jsp/success.jsp").forward(request, response);
+			
+		}else {
+			
+			//generates a failure response
+			getServletContext().getRequestDispatcher ("/WEB-INF/jsp/error.jsp").forward(request, response);
+			
+                    }//end if/else
+            } catch (Exception e) {
+                e.printStackTrace();;
+            }//end try catch
     }//end doGet
     
     /**
+    * Soft deletes a staff member from the database
+    * 
     * @param request
     * @param response
     * @throws javax.servlet.ServletException
@@ -65,7 +108,7 @@ public class DeleteController extends HttpServlet {
             try{
                 event = (new StaffManager()).removestaff(newsb);
 
-		//if the new DB entry was created this directs to the success page
+		//if the DB entry was updated this directs to the success page
 		if (event != null) {
 				
 			//placing customer in the HttpSession object

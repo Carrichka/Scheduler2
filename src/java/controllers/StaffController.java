@@ -34,7 +34,8 @@ public class StaffController extends HttpServlet {
     }
 
     /**
-     *
+     * Adds new staff to the database
+     * 
      * @param request
      * @param response
      * @throws ServletException

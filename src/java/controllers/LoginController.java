@@ -42,7 +42,8 @@ public class LoginController extends HttpServlet {
     }
 
     /**
-     *
+     * Updates the home page with a dynamic list of the current week's events
+     * 
      * @param request
      * @param response
      * @throws ServletException

@@ -18,6 +18,6 @@ public interface RemoveStaffDAO extends IService{
     
         public final String NAME = "RemoveStaffServiceDAO";
 	
-	public StaffBean removestaff (StaffBean staff) throws NamingException ;
+	public StaffBean removestaff (StaffBean staff) throws NamingException;
     
 }

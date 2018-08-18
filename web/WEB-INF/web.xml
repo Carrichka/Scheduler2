@@ -85,5 +85,10 @@
   	<env-entry-type>java.lang.String</env-entry-type>
   	<env-entry-value>com.RASS.model.services.removestaff.RemoveStaffDAOImpl</env-entry-value>
   </env-entry>
+  <env-entry>
+  	<env-entry-name>RemoveEventService</env-entry-name>
+  	<env-entry-type>java.lang.String</env-entry-type>
+  	<env-entry-value>com.RASS.model.services.removeevent.RemoveEventDAOImpl</env-entry-value>
+  </env-entry>
 </web-app>
 

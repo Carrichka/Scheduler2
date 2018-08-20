@@ -32,7 +32,7 @@
 <body>
     <center>
         <form method="post" action="AddEvent">
-            <h1>Assign a scorekeeper to a field</h1>
+            <h1>Assign a Scorekeeper to a Field</h1>
         <table border="0">
             <thead>
                 <tr>
@@ -87,7 +87,7 @@
                     </form>
                     <form method="get" action="login">
                     <td>
-                        <input class="btn btn-danger btn-md  mb-3"
+                        <input class="btn btn-primary btn-md  mb-3"
                                type="submit" 
                                value="Cancel"/>
                     </td>

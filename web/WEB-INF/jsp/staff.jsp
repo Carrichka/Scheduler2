@@ -15,7 +15,7 @@
 <body>
     <center>
     <br>
-    <h1>Add a new scorekeeper</h1>
+    <h1>Add a New Scorekeeper</h1>
     <form method="post" action="AddStaff">
     <table>
         <thead>
@@ -26,11 +26,11 @@
         </thead>
         <tbody>
             <tr>
-                <td>First Name</td>
+                <td>First Name: </td>
                 <td><input type="text" name="first_name"/><br/></td>
             </tr>
             <tr>
-                <td>Last Name </td>
+                <td>Last Name: </td>
                 <td><input type="text" name="last_name"/><br/></td>
             </tr>
             <tr>
@@ -40,7 +40,7 @@
                 </td>
                 </form>
                 <form method="get" action="login">
-                    <td><input class="btn btn-danger btn-md  mb-3"
+                    <td><input class="btn btn-primary btn-md  mb-3"
                                accept=""type="submit" 
                                accesskey=""value="Cancel"/></td>
                     </td>
@@ -52,7 +52,7 @@
 <br><br>
 <center>
     <form method="post" action="DeleteStaff">
-        <h1>Remove a scorekeeper</h1>
+        <h1>Remove a Scorekeeper</h1>
     <table>
         <thead>
             <tr>
@@ -78,7 +78,7 @@
                            value="Remove"/></td>
                 </form>
                 <form method="get" action="AddStaff">
-                <td><input class="btn btn-info btn-md  mb-3"
+                <td><input class="btn btn-primary btn-md  mb-3"
                            type="submit" 
                            value="Refresh List"/></td></td>
                 </form>

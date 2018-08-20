@@ -26,7 +26,7 @@
           <div class="container">
         <table class="table table-striped">
           <thead>
-            <tr bgcolor="green">
+            <tr bgcolor="#A9A9A9">
               <th> Date </th>
               <th> Field </th>
               <th> Game Type </th>
@@ -35,7 +35,7 @@
               <th style="display:none;"> Field ID </th>
               <th style="display:none;"> Scorekeeper ID </th>
               <th style="display:none;"> Game Type ID </th>
-              <th> Action </th>
+              <th> Delete </th>
             </tr>
           </thead>
           <tbody>
@@ -63,7 +63,7 @@
         </table>   
         <table>
               <tr align = right>
-                  <input class="btn btn-info btn-sm  mb-3"
+                  <input class="btn btn-primary btn-md  mb-3"
                            type="submit" 
                            value="Delete Selected Event"/>
               </tr>
@@ -72,28 +72,28 @@
          </form>
               </div>
       </center>
-        <p></p>
+      <p></p>
       <center>
         <table>
           <thead>
             <tr>
               <td>
                 <form method="post" action="DateRange">
-                <input class="btn btn-info btn-md  mb-3" 
+                <input class="btn btn-primary btn-md  mb-3" 
                        type="submit" 
                        value="Previous Date Range"/>
                 </form>
               </td>
               <td>
                 <form method="get" action="login">
-                <input class="btn btn-info btn-sm  mb-3"
+                <input class="btn btn-primary btn-md  mb-3"
                        type="submit" 
                        value="Current"/>   
                 </form>
               </td>
               <td>
                 <form method="get" action="DateRange">
-                <input class="btn btn-info btn-md  mb-3" 
+                <input class="btn btn-primary btn-md  mb-3" 
                        type="submit" 
                        value="Next Date Range"/>
                 </form>
@@ -107,14 +107,14 @@
               <td>
                 <form method="get"
                       action="AddEvent">
-                  <input class="btn btn-success btn-md  mb-3"
+                  <input class="btn btn-primary btn-md  mb-3"
                          type="submit"
                          value="Schedule Scorekeepers" /></form>
               </td>
               <td>
                 <form method="get"
                       action="AddStaff">
-                  <input class="btn btn-success btn-md  mb-3"
+                  <input class="btn btn-primary btn-md  mb-3"
                          type="submit"
                          value="Create/Update Scorekeepers" /></form>
               </td>

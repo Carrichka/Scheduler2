@@ -12,30 +12,30 @@ import static org.junit.Assert.*;
  *
  * @author Carri Martin
  */
-public class EventBeanTest {
+public class StaffBeanTest {
     
-    public EventBeanTest() {
+    public StaffBeanTest() {
     }
     
     /**
-    * Tests with a valid event passed in
+    * Tests with a valid StaffBean passed in
     */	
     @Test
     public void testValidate() {
         System.out.println("starting testValidate()");
-	EventBean b1 = new EventBean (1, "1", 1,"Kate","Daniels","2018-7-04", 1, "Coed");
+	StaffBean b1 = new StaffBean (1, "Kate","Daniels","N");
 	// should assert to True since all variables are valid.
 	assertTrue ("b1 validates", b1.validate());
 	System.out.println("testValidate PASSED");
     }
     
     /**
-     * Tests with an invalid event passed in
+     * Tests with an invalid StaffBean passed in
     */
     @Test
     public void testNotValidate() {
         System.out.println("starting testNotValidate()");
-	EventBean b1 = new EventBean ();
+	StaffBean b1 = new StaffBean ();
 	// b1.validate should not pass here because no valid variables were passed in
 	// EventBean class is valid only if all class variables are passed
 	assertFalse ("b1 does not validate", b1.validate());
@@ -43,13 +43,13 @@ public class EventBeanTest {
     }
     
     /**
-    * Tests if two EventBeans are equal
+    * Tests if two StaffBeans are equal
     */
     @Test	
     public void testEqualsEvent() {
             System.out.println("starting testEqualsEvent()");
-            EventBean b1 = new EventBean (1, "1", 1,"Kate","Daniels","2018-7-04", 1, "Coed");
-            EventBean b2 = new EventBean (1, "1", 1,"Kate","Daniels","2018-7-04", 1, "Coed");
+            StaffBean b1 = new StaffBean (1, "Kate","Daniels","N");
+            StaffBean b2 = new StaffBean (1, "Kate","Daniels","N");
             // this should assert to true since the contents of 
             // b1 and b2 class variables are identical.
             assertTrue ("b1 equals b2", b1.equals(b2));
@@ -57,17 +57,17 @@ public class EventBeanTest {
     }
     
     /**
-    * Tests if two EventBeans are not equal
+    * Tests if two StaffBeans are not equal
     */
     @Test
     public void testNotEqualsEvent() {
             System.out.println("starting testNotEqualsEvent()");
-            EventBean b1 = new EventBean (1, "1", 1,"Kate","Daniels","2018-7-04", 1, "Coed");
-            EventBean b2 = new EventBean (2, "2", 2,"Kat","Jones","2018-7-05", 2, "Mens");
+            StaffBean b1 = new StaffBean (1, "Kate","Daniels","N");
+            StaffBean b2 = new StaffBean (2, "Kate","Jones","N");
             // this should assert to false since the contents of 
             // b1 and b2 class variables are NOT identical.
             assertFalse ("b1 does NOT equal b2", b1.equals(b2));
             System.out.println("testNotEqualsEvent PASSED");		
     }
     
-}// end EventBeanTest
+}// end StaffBeanTest

@@ -16,27 +16,27 @@ public class StaffBean {
 	}
         
         /** Constructor for dynamic list creation
-        * @param scorekeeper_id
+        * @param scorekeeperId
         * @param firstname
         * @param lastname
         * @param deleted
         */
-	public StaffBean(int scorekeeper_id,String firstname,String lastname,String deleted) {
-		this.scorekeeper_id = scorekeeper_id;
+	public StaffBean(int scorekeeperId,String firstname,String lastname,String deleted) {
+		this.scorekeeperId = scorekeeperId;
                 this.firstname = firstname;
                 this.lastname = lastname;
                 this.deleted = deleted;
 	}
         
         /** scorekeeper id */
-        private int scorekeeper_id;
+        private int scorekeeperId;
 	
 	/**
 	 * 
 	 * @param scorekeeper_id
 	 */
 	public void setScorekeeperid(int scorekeeper_id){
-		this.scorekeeper_id = scorekeeper_id;
+		this.scorekeeperId = scorekeeper_id;
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class StaffBean {
 	 * @return the scorekeeper_id
 	 */
 	public int getScorekeeperid(){
-		return scorekeeper_id;
+		return scorekeeperId;
 	}
         
         /** firstname */
@@ -102,6 +102,68 @@ public class StaffBean {
 	 */
 	public String getDeleted (){
 		return deleted;
-	}        
+	}    
+        
+        public boolean validate() {
+            if (firstname == null || "".equals(firstname))
+		return false;
+            if (lastname == null || "".equals(lastname))
+		return false;
+            if (deleted == null || "".equals(deleted))
+		return false;
+            if (scorekeeperId <= 0)
+                return false;
+            return true;
+	}// end validate
+        
+        @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result
+				+ ((lastname == null) ? 0 : lastname.hashCode());
+                result = prime * result
+				+ ((deleted == null) ? 0 : deleted.hashCode());
+		return result;
+	}
+        
+        @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StaffBean  other = (StaffBean ) obj;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+                if (deleted == null) {
+			if (other.deleted != null)
+				return false;
+		} else if (!deleted.equals(other.deleted))
+			return false;
+		/** This one is different from the tests above because iSBNumber is an int **/
+		if (scorekeeperId != other.scorekeeperId)
+			return false;
+		return true;
+	}// end equals
+        
+        @Override
+	public String toString() {
+		return "StaffBean [scorekeeperId=" + scorekeeperId 
+                                + ", firstname=" + firstname + ", "
+                                + ", lastname=" + lastname + ", "
+                                + ", deleted=" + deleted + "]";
+	}
 
 }// end StaffBean

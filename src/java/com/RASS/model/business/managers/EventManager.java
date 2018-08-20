@@ -89,10 +89,10 @@ public class EventManager {
 
                 ServiceFactory factory = new ServiceFactory();
 
-                RemoveEventDAO removestaffSvc = (RemoveEventDAO) factory.getService("RemoveEventService");
-                    returnEvent = removestaffSvc.removeevent(event);
+                RemoveEventDAO deleteeventSvc = (RemoveEventDAO) factory.getService("RemoveEventService");
+                    returnEvent = deleteeventSvc.removeevent(event);
 
                 return returnEvent;
-        }//end removestaff
+        }//end deleteevent
         
 }//end EventManager

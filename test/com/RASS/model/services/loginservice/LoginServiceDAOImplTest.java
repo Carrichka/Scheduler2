@@ -46,12 +46,12 @@ public class LoginServiceDAOImplTest {
 
 			//setup the datasource and properties
 			MysqlConnectionPoolDataSource ds = new MysqlConnectionPoolDataSource(); 
-			ds.setURL("jdbc/scorekeeper_scheduling");
+			ds.setURL("jdbc:mysql://localhost:3306/scorekeeper_scheduling");
 			ds.setUser("root");
 			ds.setPassword("cStfixSvXXQsk0FyEuMK"); 
 
 			//bind the context  
-			context.bind("java:/comp/env/jdbc/scorekeeper_scheduling", ds); 
+			context.bind("java:/comp/env/jdbc:mysql://localhost:3306/scorekeeper_scheduling", ds); 
 
 		} catch (NamingException e) {
 			e.printStackTrace();

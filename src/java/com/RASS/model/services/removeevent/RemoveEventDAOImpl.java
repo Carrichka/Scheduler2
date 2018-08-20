@@ -6,7 +6,6 @@
 package com.RASS.model.services.removeevent;
 
 import com.RASS.model.domain.EventBean;
-import com.RASS.model.domain.StaffBean;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +52,7 @@ public class RemoveEventDAOImpl  implements RemoveEventDAO {
         int scorekeeperId = event.getScorekeeperId();
         String scheduledDate = event.getScheduledDate();
         int gameTypeId = event.getGametypeId();
-        //return event;
+
         /*SQL prepared statement to delete an event entry
         */
         String sql = "DELETE FROM field_scorekeeper_schedule WHERE field_id = ? AND scorekeeper_id = ? AND scheduled_date = ? AND game_type_id = ?";

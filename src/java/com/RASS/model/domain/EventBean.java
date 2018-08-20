@@ -198,6 +198,27 @@ public class EventBean implements Serializable {
 		this.gameType = gameType;
 	}
         
+        public boolean validate() {
+		if (fieldName == null || "".equals(fieldName))
+			return false;
+		if (scorekeeperFirstName == null || "".equals(scorekeeperFirstName))
+			return false;
+		if (scorekeeperLastName == null || "".equals(scorekeeperLastName))
+			return false;
+                if (scheduledDate == null || "".equals(scheduledDate))
+			return false;
+                if (gameType == null || "".equals(gameType))
+			return false;
+		if (fieldID <= 0)
+			return false;
+                if (scorekeeperID <= 0)
+			return false;
+                if (gametypeID <= 0)
+			return false;
+		
+		return true;
+	}// end validate
+        
         @Override
 	public int hashCode() {
 		final int prime = 31;
@@ -213,6 +234,7 @@ public class EventBean implements Serializable {
 				+ ((gameType == null) ? 0 : gameType.hashCode());
 		return result;
 	}
+        
         @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -252,7 +274,19 @@ public class EventBean implements Serializable {
                 if (gametypeID != other.gametypeID)
 			return false;
 		return true;
+	}// end equals
+        
+        @Override
+	public String toString() {
+		return "EventBean [fieldID=" + fieldID 
+                                + ", fieldName=" + fieldName
+				+ ", scorekeeperID=" + scorekeeperID 
+                                + ", scorekeeperFirstName=" + scorekeeperFirstName
+                                + ", scorekeeperLastName=" + scorekeeperLastName
+                                + ", scheduledDate=" + scheduledDate
+                                + ", gametypeID=" + gametypeID
+				+ ", gameType=" + gameType + "]";
 	}
 	
-}// End EventBean
+}// end EventBean
 

@@ -49,7 +49,7 @@ public class LoginBeanTest {
     */
     @Test	
     public void testEqualsLogin() {
-            System.out.println("starting testEqualsEvent()");
+            System.out.println("starting testEqualsLogin()");
             LoginBean b1 = new LoginBean();
                 b1.setUsername("cmartin@regis.edu");
                 b1.setPassword("password");
@@ -59,7 +59,7 @@ public class LoginBeanTest {
             // this should assert to true since the contents of 
             // b1 and b2 class variables are identical.
             assertTrue ("b1 equals b2", b1.equals(b2));
-            System.out.println("testEqualsEvent PASSED");		
+            System.out.println("testEqualsLogin PASSED");		
     }
     
     /**
@@ -67,7 +67,7 @@ public class LoginBeanTest {
     */
     @Test
     public void testNotEqualsLogin() {
-            System.out.println("starting testNotEqualsEvent()");
+            System.out.println("starting testNotEqualsLogin()");
             LoginBean b1 = new LoginBean();
                 b1.setUsername("cmartin@regis.edu");
                 b1.setPassword("password");
@@ -77,7 +77,7 @@ public class LoginBeanTest {
             // this should assert to false since the contents of 
             // b1 and b2 class variables are NOT identical.
             assertFalse ("b1 does NOT equal b2", b1.equals(b2));
-            System.out.println("testNotEqualsEvent PASSED");		
+            System.out.println("testNotEqualsLogin PASSED");		
     }
  
 }// end LoginBeanTest

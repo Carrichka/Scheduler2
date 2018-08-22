@@ -47,13 +47,13 @@ public class StaffBeanTest {
     */
     @Test	
     public void testEqualsEvent() {
-            System.out.println("starting testEqualsEvent()");
+            System.out.println("starting testEqualsStaff()");
             StaffBean b1 = new StaffBean (1, "Kate","Daniels","N");
             StaffBean b2 = new StaffBean (1, "Kate","Daniels","N");
             // this should assert to true since the contents of 
             // b1 and b2 class variables are identical.
             assertTrue ("b1 equals b2", b1.equals(b2));
-            System.out.println("testEqualsEvent PASSED");		
+            System.out.println("testEqualsStaff PASSED");		
     }
     
     /**
@@ -61,13 +61,13 @@ public class StaffBeanTest {
     */
     @Test
     public void testNotEqualsEvent() {
-            System.out.println("starting testNotEqualsEvent()");
+            System.out.println("starting testNotEqualsStaff()");
             StaffBean b1 = new StaffBean (1, "Kate","Daniels","N");
             StaffBean b2 = new StaffBean (2, "Kate","Jones","N");
             // this should assert to false since the contents of 
             // b1 and b2 class variables are NOT identical.
             assertFalse ("b1 does NOT equal b2", b1.equals(b2));
-            System.out.println("testNotEqualsEvent PASSED");		
+            System.out.println("testNotEqualsStaff PASSED");		
     }
     
 }// end StaffBeanTest
